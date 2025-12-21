@@ -22,7 +22,7 @@ describe('Decision Entity', () => {
       expect(decision.content).toBe('Test decision content');
       expect(decision.status).toBe('DRAFT');
       expect(decision.created_at).toBeDefined();
-      expect(decision.updated_at).toBeDefined();
+      expect(decision.locked_at).toBeNull();
       expect(decision.content_hash).toBeDefined();
     });
 

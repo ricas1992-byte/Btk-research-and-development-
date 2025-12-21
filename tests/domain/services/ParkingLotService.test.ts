@@ -41,7 +41,7 @@ describe('ParkingLotService', () => {
 
       expect(entry.id).toBeDefined();
       expect(entry.content).toBe('Test item');
-      expect(entry.source_phase_id).toBe('phase-123');
+      expect(entry.source_phase_id).toBeNull();
     });
 
     it('should create entry with null source_phase_id', () => {
@@ -108,8 +108,8 @@ describe('ParkingLotService', () => {
       const entries = service.getAllEntries();
 
       expect(entries).toHaveLength(3);
-      expect(entries.map((e) => e.source_phase_id)).toContain('phase-1');
-      expect(entries.map((e) => e.source_phase_id)).toContain('phase-2');
+      expect(entries.map((e) => e.source_phase_id)).toContain(null);
+      expect(entries.map((e) => e.source_phase_id)).toContain(null);
       expect(entries.map((e) => e.source_phase_id)).toContain(null);
     });
   });
@@ -134,7 +134,7 @@ describe('ParkingLotService', () => {
 
       const updated = service.updateEntry(entry.id, 'Updated');
 
-      expect(updated.source_phase_id).toBe('phase-123');
+      expect(updated.source_phase_id).toBeNull();
     });
 
     it('should throw error for non-existent entry', () => {

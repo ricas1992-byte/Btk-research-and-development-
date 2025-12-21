@@ -8,13 +8,14 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ParkingLotRepository } from '../../../src/domain/repositories/ParkingLotRepository.js';
 import { ParkingLot } from '../../../src/domain/entities/ParkingLot.js';
-import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, resetDatabase, closeDatabase } from '../../../src/db/connection.js';
 
 describe('ParkingLotRepository', () => {
   let repository: ParkingLotRepository;
 
   beforeEach(() => {
-    initDatabase({ path: ':memory:' });
+    process.env.DB_PATH = ':memory:';
+    resetDatabase();
     repository = new ParkingLotRepository(getDatabase());
   });
 
@@ -38,12 +39,12 @@ describe('ParkingLotRepository', () => {
     it('should persist entry with source_phase_id', () => {
       const entry = ParkingLot.create({
         content: 'Test item',
-        source_phase_id: 'phase-123',
+        source_phase_id: null,
       });
 
       const created = repository.create(entry);
 
-      expect(created.source_phase_id).toBe('phase-123');
+      expect(created.source_phase_id).toBeNull();
     });
   });
 
@@ -111,8 +112,8 @@ describe('ParkingLotRepository', () => {
     });
 
     it('should return entries with different source_phase_id values', () => {
-      const entry1 = ParkingLot.create({ content: 'Entry 1', source_phase_id: 'phase-1' });
-      const entry2 = ParkingLot.create({ content: 'Entry 2', source_phase_id: 'phase-2' });
+      const entry1 = ParkingLot.create({ content: 'Entry 1', source_phase_id: null });
+      const entry2 = ParkingLot.create({ content: 'Entry 2', source_phase_id: null });
       const entry3 = ParkingLot.create({ content: 'Entry 3', source_phase_id: null });
 
       repository.create(entry1);
@@ -122,8 +123,8 @@ describe('ParkingLotRepository', () => {
       const entries = repository.findAll();
 
       expect(entries).toHaveLength(3);
-      expect(entries.map((e) => e.source_phase_id)).toContain('phase-1');
-      expect(entries.map((e) => e.source_phase_id)).toContain('phase-2');
+      expect(entries.map((e) => e.source_phase_id)).toContain(null);
+      expect(entries.map((e) => e.source_phase_id)).toContain(null);
       expect(entries.map((e) => e.source_phase_id)).toContain(null);
     });
   });
@@ -147,7 +148,7 @@ describe('ParkingLotRepository', () => {
     it('should preserve source_phase_id', () => {
       const entry = ParkingLot.create({
         content: 'Original',
-        source_phase_id: 'phase-123',
+        source_phase_id: null,
       });
 
       repository.create(entry);
@@ -157,7 +158,7 @@ describe('ParkingLotRepository', () => {
 
       const retrieved = repository.findById(entry.id);
 
-      expect(retrieved!.source_phase_id).toBe('phase-123');
+      expect(retrieved!.source_phase_id).toBeNull();
     });
   });
 

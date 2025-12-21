@@ -117,7 +117,7 @@ describe('Phase Entity', () => {
 
       const completed = phase.complete();
 
-      expect(() => completed.complete()).toThrow('Phase is already in terminal state');
+      expect(() => completed.complete()).toThrow('Cannot complete phase in');
     });
 
     it('should throw if ABANDONED', () => {
@@ -128,7 +128,7 @@ describe('Phase Entity', () => {
 
       const abandoned = phase.abandon();
 
-      expect(() => abandoned.complete()).toThrow('Phase is already in terminal state');
+      expect(() => abandoned.complete()).toThrow('Cannot complete phase in');
     });
 
     it('should return new instance (immutability)', () => {
@@ -166,7 +166,7 @@ describe('Phase Entity', () => {
 
       const completed = phase.complete();
 
-      expect(() => completed.abandon()).toThrow('Phase is already in terminal state');
+      expect(() => completed.abandon()).toThrow('Cannot abandon phase in');
     });
 
     it('should throw if already ABANDONED', () => {
@@ -177,7 +177,7 @@ describe('Phase Entity', () => {
 
       const abandoned = phase.abandon();
 
-      expect(() => abandoned.abandon()).toThrow('Phase is already in terminal state');
+      expect(() => abandoned.abandon()).toThrow('Cannot abandon phase in');
     });
 
     it('should return new instance (immutability)', () => {
