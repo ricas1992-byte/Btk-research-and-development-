@@ -1,0 +1,1400 @@
+
+> cognitive-discipline-workspace@1.0.0 test /home/user/Btk-research-and-development-
+> vitest run
+
+
+ RUN  v1.3.1 /home/user/Btk-research-and-development-
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > createTask > should create task from locked decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > createTask > should throw error when creating from unlocked decision (ENF-03)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > createTask > should throw error when decision does not exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > createTask > should allow multiple tasks from same decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTask > should retrieve task by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTask > should return null for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should return empty array when no tasks exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should return all tasks for decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should only return tasks for specified decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update task title
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update task description
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update both title and description
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > updateTask > should throw error for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > startTask > should start pending task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > startTask > should throw error for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > startTask > should throw error when starting non-pending task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > completeTask > should complete in-progress task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > completeTask > should throw error for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > completeTask > should throw error when completing non-in-progress task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should cancel pending task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should cancel in-progress task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should throw error for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should throw error when cancelling completed task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > ENF-03: Task from locked decision only > should enforce locked decision requirement
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should follow complete workflow: PENDING → IN_PROGRESS → COMPLETED
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should support pause and resume
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should support cancel from any non-terminal state
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/services/TaskService.test.ts  (27 tests) 735ms
+stdout | tests/integration/db.test.ts > Database Integration > should initialize database successfully
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should return same instance on subsequent calls
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should pass health check when database is accessible
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should have foreign keys enabled
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should have WAL mode enabled
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create phase table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create decision table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create task table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create document table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create parking_lot table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query phase records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should enforce single active phase constraint
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query decision records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should enforce foreign key constraint on decision.phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query task records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query document records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query parking_lot records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should cascade delete decisions when phase is deleted
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should return database statistics
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create and use migrations tracking table
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/integration/db.test.ts  (20 tests) 906ms
+ ✓ tests/domain/entities/Task.test.ts  (24 tests) 24ms
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > create > should persist decision to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > create > should store correct hash in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should retrieve decision by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should verify hash on read (PROOF-07)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should return empty array when no decisions exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should return all decisions for phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should only return decisions for specified phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should verify hash on all reads
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should return only locked decisions
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should return empty array when no locked decisions exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should verify hash on all reads
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should update decision in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should recompute and store new hash
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should update status
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > delete > should remove decision from database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > delete > should not throw for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findLockedByPhaseId
+Applied migration: 001_initial_schema.sql
+
+ ❯ tests/domain/repositories/DecisionRepository.test.ts  (22 tests | 7 failed) 62ms
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should verify hash on read (PROOF-07)
+     → no such table: decisions
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should verify hash on all reads
+     → no such table: decisions
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should verify hash on all reads
+     → no such table: decisions
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+     → no such table: decisions
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+     → no such table: decisions
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+     → no such table: decisions
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findLockedByPhaseId
+     → no such table: decisions
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > create > should persist phase to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > create > should store correct hash in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should retrieve phase by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should verify hash on read (PROOF-07)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should include error details in hash mismatch (PROOF-07)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return active phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return null when no active phase exists
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return null after phase is completed
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should verify hash on read
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should return empty array when no phases exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should return all phases
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should verify hash on all reads
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should update phase in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should recompute and store new hash
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should update status
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return false when no phases exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return true when active phase exists
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return false after completing phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted name field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+Applied migration: 001_initial_schema.sql
+
+ ❯ tests/domain/repositories/PhaseRepository.test.ts  (22 tests | 6 failed) 51ms
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should verify hash on read (PROOF-07)
+     → no such table: phases
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should include error details in hash mismatch (PROOF-07)
+     → no such table: phases
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should verify hash on read
+     → no such table: phases
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should verify hash on all reads
+     → no such table: phases
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted name field
+     → no such table: phases
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+     → no such table: phases
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > create > should persist document to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > create > should store correct hash in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should retrieve document by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should verify hash on read (PROOF-07)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should return empty array when no documents exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should return all documents for phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should only return documents for specified phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should verify hash on all reads
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > update > should update document in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > update > should recompute and store new hash
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > delete > should remove document from database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > delete > should not throw for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+Applied migration: 001_initial_schema.sql
+
+ ❯ tests/domain/repositories/DocumentRepository.test.ts  (18 tests | 6 failed) 44ms
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should verify hash on read (PROOF-07)
+     → no such table: documents
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should verify hash on all reads
+     → no such table: documents
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+     → no such table: documents
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+     → no such table: documents
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+     → no such table: documents
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+     → no such table: documents
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > createDecision > should create decision with DRAFT status
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > createDecision > should allow multiple decisions for same phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecision > should retrieve decision by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecision > should return null for non-existent decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should return empty array when no decisions exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should return all decisions for phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should only return decisions for specified phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getLockedDecisionsByPhase > should return only locked decisions
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getLockedDecisionsByPhase > should return empty array when no locked decisions exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should update draft decision content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should throw error when updating locked decision (ENF-02)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should throw error for non-existent decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should lock draft decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should make decision immutable after lock
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should throw error when locking already locked decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should throw error for non-existent decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should delete draft decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should throw error when deleting locked decision (ENF-02)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should throw error for non-existent decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should prevent all modifications after lock
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should allow updates before lock
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should preserve content hash after lock
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/services/DecisionService.test.ts  (22 tests) 56ms
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > create > should persist task to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > create > should store correct hash in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should retrieve task by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should verify hash on read (PROOF-07)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should return empty array when no tasks exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should return all tasks for decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should only return tasks for specified decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should verify hash on all reads
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should update task in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should recompute and store new hash
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should update status
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should verify on findByDecisionId
+Applied migration: 001_initial_schema.sql
+
+ ❯ tests/domain/repositories/TaskRepository.test.ts  (17 tests | 6 failed) 47ms
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should verify hash on read (PROOF-07)
+     → no such table: tasks
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should verify hash on all reads
+     → no such table: tasks
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+     → no such table: tasks
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+     → no such table: tasks
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+     → no such table: tasks
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should verify on findByDecisionId
+     → no such table: tasks
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > createDocument > should create document with all fields
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > createDocument > should allow multiple documents for same phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocument > should retrieve document by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocument > should return null for non-existent document
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should return empty array when no documents exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should return all documents for phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should only return documents for specified phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update document title only
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update document content only
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update both title and content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should throw error for non-existent document
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should handle empty updates
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should delete document
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should not throw error for non-existent document
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should remove document from phase list
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle plain text without markdown
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should preserve special characters
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle multiline content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle empty content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > document lifecycle > should support create, update, delete workflow
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > document lifecycle > should support multiple updates
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/services/DocumentService.test.ts  (21 tests) 47ms
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should create new phase when no active phase exists
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should throw error when active phase already exists (ENF-01)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should allow creating new phase after completing previous
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should allow creating new phase after abandoning previous
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getPhase > should retrieve phase by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getPhase > should return null for non-existent phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return active phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return null when no active phase exists
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return null after completing phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getAllPhases > should return empty array when no phases exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getAllPhases > should return all phases
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update phase name
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update phase description
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update both name and description
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should throw error for non-existent phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should complete active phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should throw error for non-existent phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should make phase terminal (cannot complete again)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should abandon active phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should throw error for non-existent phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should make phase terminal (cannot abandon again)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > ENF-01: Single active phase constraint > should enforce only one active phase at a time
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > ENF-01: Single active phase constraint > should allow sequential phases after completion
+Applied migration: 001_initial_schema.sql
+
+ ❯ tests/domain/services/PhaseService.test.ts  (23 tests | 2 failed) 64ms
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should make phase terminal (cannot complete again)
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in COMPLETED st…'
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should make phase terminal (cannot abandon again)
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in ABANDONED sta…'
+ ✓ tests/unit/verification.test.ts  (16 tests) 13ms
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with source_phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with null source_phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should allow rapid creation of multiple entries
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getEntry > should retrieve entry by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getEntry > should return null for non-existent entry
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return empty array when no entries exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return all entries
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return entries with different source phases
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should update entry content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should preserve source_phase_id when updating
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should throw error for non-existent entry
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should handle empty content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should delete entry
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should not throw error for non-existent entry
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should remove entry from all entries list
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support rapid idea capture
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support multiline content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support entries with special characters
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support create, update, delete workflow
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support multiple updates
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support bulk operations
+Applied migration: 001_initial_schema.sql
+
+ ❯ tests/domain/services/ParkingLotService.test.ts  (22 tests | 3 failed) 48ms
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with source_phase_id
+     → FOREIGN KEY constraint failed
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return entries with different source phases
+     → FOREIGN KEY constraint failed
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should preserve source_phase_id when updating
+     → FOREIGN KEY constraint failed
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry with source_phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should retrieve entry by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should NOT verify hash (no hash field per spec)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return empty array when no entries exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return all entries
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return entries with different source_phase_id values
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should update entry in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should preserve source_phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should remove entry from database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should not throw for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should remove entry from findAll results
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should allow rapid CRUD operations
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should support multiline content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should support special characters
+Applied migration: 001_initial_schema.sql
+
+ ❯ tests/domain/repositories/ParkingLotRepository.test.ts  (16 tests | 3 failed) 40ms
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry with source_phase_id
+     → FOREIGN KEY constraint failed
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return entries with different source_phase_id values
+     → FOREIGN KEY constraint failed
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should preserve source_phase_id
+     → FOREIGN KEY constraint failed
+ ❯ tests/domain/entities/Phase.test.ts  (18 tests | 4 failed) 19ms
+   ❯ tests/domain/entities/Phase.test.ts > Phase Entity > complete method > should throw if already COMPLETED
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in COMPLETED st…'
+   ❯ tests/domain/entities/Phase.test.ts > Phase Entity > complete method > should throw if ABANDONED
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in ABANDONED st…'
+   ❯ tests/domain/entities/Phase.test.ts > Phase Entity > abandon method > should throw if already COMPLETED
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in COMPLETED sta…'
+   ❯ tests/domain/entities/Phase.test.ts > Phase Entity > abandon method > should throw if already ABANDONED
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in ABANDONED sta…'
+ ✓ tests/acceptance/workflows.test.ts  (8 tests) 15ms
+ ✓ tests/integration/api.test.ts  (12 tests) 125ms
+ ❯ tests/domain/entities/Decision.test.ts  (15 tests | 1 failed) 14ms
+   ❯ tests/domain/entities/Decision.test.ts > Decision Entity > factory method > should create decision with DRAFT status
+     → expected undefined not to be undefined
+ ✓ tests/domain/entities/Document.test.ts  (13 tests) 11ms
+ ✓ tests/unit/hash.test.ts  (16 tests) 14ms
+ ✓ tests/domain/entities/ParkingLot.test.ts  (14 tests) 13ms
+ ✓ tests/unit/invariants.test.ts  (7 tests) 10ms
+ ✓ tests/unit/state-machines.test.ts  (17 tests) 13ms
+ ✓ tests/integration/misuse.test.ts  (7 tests) 10ms
+ ✓ tests/unit/hash-utils.test.ts  (11 tests) 8ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 38 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/domain/entities/Decision.test.ts > Decision Entity > factory method > should create decision with DRAFT status
+AssertionError: expected undefined not to be undefined
+ ❯ tests/domain/entities/Decision.test.ts:25:35
+     23|       expect(decision.status).toBe('DRAFT');
+     24|       expect(decision.created_at).toBeDefined();
+     25|       expect(decision.updated_at).toBeDefined();
+       |                                   ^
+     26|       expect(decision.content_hash).toBeDefined();
+     27|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/38]⎯
+
+ FAIL  tests/domain/entities/Phase.test.ts > Phase Entity > complete method > should throw if already COMPLETED
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in COMPLETED st…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot complete phase in COMPLETED status
+
+ ❯ tests/domain/entities/Phase.test.ts:120:42
+    118|       const completed = phase.complete();
+    119| 
+    120|       expect(() => completed.complete()).toThrow('Phase is already in …
+       |                                          ^
+    121|     });
+    122| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/38]⎯
+
+ FAIL  tests/domain/entities/Phase.test.ts > Phase Entity > complete method > should throw if ABANDONED
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in ABANDONED st…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot complete phase in ABANDONED status
+
+ ❯ tests/domain/entities/Phase.test.ts:131:42
+    129|       const abandoned = phase.abandon();
+    130| 
+    131|       expect(() => abandoned.complete()).toThrow('Phase is already in …
+       |                                          ^
+    132|     });
+    133| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/38]⎯
+
+ FAIL  tests/domain/entities/Phase.test.ts > Phase Entity > abandon method > should throw if already COMPLETED
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in COMPLETED sta…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot abandon phase in COMPLETED status
+
+ ❯ tests/domain/entities/Phase.test.ts:169:41
+    167|       const completed = phase.complete();
+    168| 
+    169|       expect(() => completed.abandon()).toThrow('Phase is already in t…
+       |                                         ^
+    170|     });
+    171| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/38]⎯
+
+ FAIL  tests/domain/entities/Phase.test.ts > Phase Entity > abandon method > should throw if already ABANDONED
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in ABANDONED sta…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot abandon phase in ABANDONED status
+
+ ❯ tests/domain/entities/Phase.test.ts:180:41
+    178|       const abandoned = phase.abandon();
+    179| 
+    180|       expect(() => abandoned.abandon()).toThrow('Phase is already in t…
+       |                                         ^
+    181|     });
+    182| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/38]⎯
+
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should verify hash on read (PROOF-07)
+SqliteError: no such table: decisions
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DecisionRepository.test.ts:93:10
+     91| 
+     92|       const db = getDatabase();
+     93|       db.prepare('UPDATE decisions SET content_hash = ? WHERE id = ?')…
+       |          ^
+     94|         'wrong-hash',
+     95|         decision.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/38]⎯
+
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should verify hash on all reads
+SqliteError: no such table: decisions
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DecisionRepository.test.ts:158:10
+    156| 
+    157|       const db = getDatabase();
+    158|       db.prepare('UPDATE decisions SET content_hash = ? WHERE id = ?')…
+       |          ^
+    159|         'wrong-hash',
+    160|         decision1.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/38]⎯
+
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should verify hash on all reads
+SqliteError: no such table: decisions
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DecisionRepository.test.ts:217:10
+    215| 
+    216|       const db = getDatabase();
+    217|       db.prepare('UPDATE decisions SET content_hash = ? WHERE id = ?')…
+       |          ^
+    218|         'wrong-hash',
+    219|         decision.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/38]⎯
+
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+SqliteError: no such table: decisions
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DecisionRepository.test.ts:310:10
+    308| 
+    309|       const db = getDatabase();
+    310|       db.prepare('UPDATE decisions SET content = ? WHERE id = ?').run(
+       |          ^
+    311|         'Tampered content',
+    312|         decision.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/38]⎯
+
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+SqliteError: no such table: decisions
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DecisionRepository.test.ts:327:10
+    325| 
+    326|       const db = getDatabase();
+    327|       db.prepare('UPDATE decisions SET content_hash = ? WHERE id = ?')…
+       |          ^
+    328|         'corrupted-hash',
+    329|         decision.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/38]⎯
+
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+SqliteError: no such table: decisions
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DecisionRepository.test.ts:358:10
+    356| 
+    357|       const db = getDatabase();
+    358|       db.prepare('UPDATE decisions SET content = ? WHERE id = ?').run(…
+       |          ^
+    359| 
+    360|       expect(() => repository.findByPhaseId(testPhaseId)).toThrow(Hash…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/38]⎯
+
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findLockedByPhaseId
+SqliteError: no such table: decisions
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DecisionRepository.test.ts:375:10
+    373| 
+    374|       const db = getDatabase();
+    375|       db.prepare('UPDATE decisions SET content = ? WHERE id = ?').run(…
+       |          ^
+    376| 
+    377|       expect(() => repository.findLockedByPhaseId(testPhaseId)).toThro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/38]⎯
+
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should verify hash on read (PROOF-07)
+SqliteError: no such table: documents
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DocumentRepository.test.ts:99:10
+     97| 
+     98|       const db = getDatabase();
+     99|       db.prepare('UPDATE documents SET content_hash = ? WHERE id = ?')…
+       |          ^
+    100|         'wrong-hash',
+    101|         document.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/38]⎯
+
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should verify hash on all reads
+SqliteError: no such table: documents
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DocumentRepository.test.ts:169:10
+    167| 
+    168|       const db = getDatabase();
+    169|       db.prepare('UPDATE documents SET content_hash = ? WHERE id = ?')…
+       |          ^
+    170| 
+    171|       expect(() => repository.findByPhaseId(testPhaseId)).toThrow(Hash…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/38]⎯
+
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+SqliteError: no such table: documents
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DocumentRepository.test.ts:251:10
+    249| 
+    250|       const db = getDatabase();
+    251|       db.prepare('UPDATE documents SET title = ? WHERE id = ?').run('T…
+       |          ^
+    252| 
+    253|       expect(() => repository.findById(document.id)).toThrow(HashVerif…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/38]⎯
+
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+SqliteError: no such table: documents
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DocumentRepository.test.ts:266:10
+    264| 
+    265|       const db = getDatabase();
+    266|       db.prepare('UPDATE documents SET content = ? WHERE id = ?').run(
+       |          ^
+    267|         'Tampered Content',
+    268|         document.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/38]⎯
+
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+SqliteError: no such table: documents
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DocumentRepository.test.ts:284:10
+    282| 
+    283|       const db = getDatabase();
+    284|       db.prepare('UPDATE documents SET content_hash = ? WHERE id = ?')…
+       |          ^
+    285|         'corrupted-hash',
+    286|         document.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/38]⎯
+
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+SqliteError: no such table: documents
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/DocumentRepository.test.ts:318:10
+    316| 
+    317|       const db = getDatabase();
+    318|       db.prepare('UPDATE documents SET title = ? WHERE id = ?').run('T…
+       |          ^
+    319| 
+    320|       expect(() => repository.findByPhaseId(testPhaseId)).toThrow(Hash…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/38]⎯
+
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry with source_phase_id
+SqliteError: FOREIGN KEY constraint failed
+ ❯ ParkingLotRepository.create src/domain/repositories/ParkingLotRepository.ts:21:10
+     19|     `);
+     20| 
+     21|     stmt.run(parkingLot.id, parkingLot.content, parkingLot.created_at,…
+       |          ^
+     22| 
+     23|     return parkingLot;
+ ❯ tests/domain/repositories/ParkingLotRepository.test.ts:44:34
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_CONSTRAINT_FOREIGNKEY' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/38]⎯
+
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return entries with different source_phase_id values
+SqliteError: FOREIGN KEY constraint failed
+ ❯ ParkingLotRepository.create src/domain/repositories/ParkingLotRepository.ts:21:10
+     19|     `);
+     20| 
+     21|     stmt.run(parkingLot.id, parkingLot.content, parkingLot.created_at,…
+       |          ^
+     22| 
+     23|     return parkingLot;
+ ❯ tests/domain/repositories/ParkingLotRepository.test.ts:118:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_CONSTRAINT_FOREIGNKEY' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/38]⎯
+
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should preserve source_phase_id
+SqliteError: FOREIGN KEY constraint failed
+ ❯ ParkingLotRepository.create src/domain/repositories/ParkingLotRepository.ts:21:10
+     19|     `);
+     20| 
+     21|     stmt.run(parkingLot.id, parkingLot.content, parkingLot.created_at,…
+       |          ^
+     22| 
+     23|     return parkingLot;
+ ❯ tests/domain/repositories/ParkingLotRepository.test.ts:153:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_CONSTRAINT_FOREIGNKEY' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/38]⎯
+
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should verify hash on read (PROOF-07)
+SqliteError: no such table: phases
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/PhaseRepository.test.ts:83:10
+     81|       const db = getDatabase();
+     82|       const wrongHash = 'wrong-hash-value';
+     83|       db.prepare('UPDATE phases SET content_hash = ? WHERE id = ?').ru…
+       |          ^
+     84| 
+     85|       expect(() => repository.findById(phase.id)).toThrow(HashVerifica…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/38]⎯
+
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should include error details in hash mismatch (PROOF-07)
+SqliteError: no such table: phases
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/PhaseRepository.test.ts:97:10
+     95| 
+     96|       const db = getDatabase();
+     97|       db.prepare('UPDATE phases SET content_hash = ? WHERE id = ?').ru…
+       |          ^
+     98| 
+     99|       try {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/38]⎯
+
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should verify hash on read
+SqliteError: no such table: phases
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/PhaseRepository.test.ts:159:10
+    157| 
+    158|       const db = getDatabase();
+    159|       db.prepare('UPDATE phases SET content_hash = ? WHERE id = ?').ru…
+       |          ^
+    160| 
+    161|       expect(() => repository.findActive()).toThrow(HashVerificationEr…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/38]⎯
+
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should verify hash on all reads
+SqliteError: no such table: phases
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/PhaseRepository.test.ts:211:10
+    209| 
+    210|       const db = getDatabase();
+    211|       db.prepare('UPDATE phases SET content_hash = ? WHERE id = ?').ru…
+       |          ^
+    212| 
+    213|       expect(() => repository.findAll()).toThrow(HashVerificationError…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/38]⎯
+
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted name field
+SqliteError: no such table: phases
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/PhaseRepository.test.ts:318:10
+    316| 
+    317|       const db = getDatabase();
+    318|       db.prepare('UPDATE phases SET name = ? WHERE id = ?').run('Tampe…
+       |          ^
+    319| 
+    320|       expect(() => repository.findById(phase.id)).toThrow(HashVerifica…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/38]⎯
+
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+SqliteError: no such table: phases
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/PhaseRepository.test.ts:332:10
+    330| 
+    331|       const db = getDatabase();
+    332|       db.prepare('UPDATE phases SET description = ? WHERE id = ?').run(
+       |          ^
+    333|         'Tampered Description',
+    334|         phase.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/38]⎯
+
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should verify hash on read (PROOF-07)
+SqliteError: no such table: tasks
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/TaskRepository.test.ts:106:10
+    104| 
+    105|       const db = getDatabase();
+    106|       db.prepare('UPDATE tasks SET content_hash = ? WHERE id = ?').run…
+       |          ^
+    107| 
+    108|       expect(() => repository.findById(task.id)).toThrow(HashVerificat…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/38]⎯
+
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should verify hash on all reads
+SqliteError: no such table: tasks
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/TaskRepository.test.ts:173:10
+    171| 
+    172|       const db = getDatabase();
+    173|       db.prepare('UPDATE tasks SET content_hash = ? WHERE id = ?').run…
+       |          ^
+    174| 
+    175|       expect(() => repository.findByDecisionId(testDecisionId)).toThro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/38]⎯
+
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+SqliteError: no such table: tasks
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/TaskRepository.test.ts:247:10
+    245| 
+    246|       const db = getDatabase();
+    247|       db.prepare('UPDATE tasks SET title = ? WHERE id = ?').run('Tampe…
+       |          ^
+    248| 
+    249|       expect(() => repository.findById(task.id)).toThrow(HashVerificat…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[30/38]⎯
+
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+SqliteError: no such table: tasks
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/TaskRepository.test.ts:262:10
+    260| 
+    261|       const db = getDatabase();
+    262|       db.prepare('UPDATE tasks SET description = ? WHERE id = ?').run(
+       |          ^
+    263|         'Tampered Description',
+    264|         task.id
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[31/38]⎯
+
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+SqliteError: no such table: tasks
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/TaskRepository.test.ts:280:10
+    278| 
+    279|       const db = getDatabase();
+    280|       db.prepare('UPDATE tasks SET content_hash = ? WHERE id = ?').run…
+       |          ^
+    281| 
+    282|       expect(() => repository.findById(task.id)).toThrow(HashVerificat…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[32/38]⎯
+
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should verify on findByDecisionId
+SqliteError: no such table: tasks
+ ❯ Database.prepare node_modules/.pnpm/better-sqlite3@11.10.0/node_modules/better-sqlite3/lib/methods/wrappers.js:5:21
+ ❯ tests/domain/repositories/TaskRepository.test.ts:311:10
+    309| 
+    310|       const db = getDatabase();
+    311|       db.prepare('UPDATE tasks SET title = ? WHERE id = ?').run('Tampe…
+       |          ^
+    312| 
+    313|       expect(() => repository.findByDecisionId(testDecisionId)).toThro…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_ERROR' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[33/38]⎯
+
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with source_phase_id
+SqliteError: FOREIGN KEY constraint failed
+ ❯ ParkingLotRepository.create src/domain/repositories/ParkingLotRepository.ts:21:10
+     19|     `);
+     20| 
+     21|     stmt.run(parkingLot.id, parkingLot.content, parkingLot.created_at,…
+       |          ^
+     22| 
+     23|     return parkingLot;
+ ❯ ParkingLotService.createEntry src/domain/services/ParkingLotService.ts:14:32
+ ❯ tests/domain/services/ParkingLotService.test.ts:37:29
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_CONSTRAINT_FOREIGNKEY' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[34/38]⎯
+
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return entries with different source phases
+SqliteError: FOREIGN KEY constraint failed
+ ❯ ParkingLotRepository.create src/domain/repositories/ParkingLotRepository.ts:21:10
+     19|     `);
+     20| 
+     21|     stmt.run(parkingLot.id, parkingLot.content, parkingLot.created_at,…
+       |          ^
+     22| 
+     23|     return parkingLot;
+ ❯ ParkingLotService.createEntry src/domain/services/ParkingLotService.ts:14:32
+ ❯ tests/domain/services/ParkingLotService.test.ts:104:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_CONSTRAINT_FOREIGNKEY' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[35/38]⎯
+
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should preserve source_phase_id when updating
+SqliteError: FOREIGN KEY constraint failed
+ ❯ ParkingLotRepository.create src/domain/repositories/ParkingLotRepository.ts:21:10
+     19|     `);
+     20| 
+     21|     stmt.run(parkingLot.id, parkingLot.content, parkingLot.created_at,…
+       |          ^
+     22| 
+     23|     return parkingLot;
+ ❯ ParkingLotService.createEntry src/domain/services/ParkingLotService.ts:14:32
+ ❯ tests/domain/services/ParkingLotService.test.ts:130:29
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'SQLITE_CONSTRAINT_FOREIGNKEY' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[36/38]⎯
+
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should make phase terminal (cannot complete again)
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in COMPLETED st…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot complete phase in COMPLETED status
+
+ ❯ tests/domain/services/PhaseService.test.ts:244:53
+    242|       service.completePhase(phase.id);
+    243| 
+    244|       expect(() => service.completePhase(phase.id)).toThrow('Phase is …
+       |                                                     ^
+    245|     });
+    246|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[37/38]⎯
+
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should make phase terminal (cannot abandon again)
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in ABANDONED sta…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot abandon phase in ABANDONED status
+
+ ❯ tests/domain/services/PhaseService.test.ts:275:52
+    273|       service.abandonPhase(phase.id);
+    274| 
+    275|       expect(() => service.abandonPhase(phase.id)).toThrow('Phase is a…
+       |                                                    ^
+    276|     });
+    277|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[38/38]⎯
+
+ Test Files  9 failed | 15 passed (24)
+      Tests  38 failed | 370 passed (408)
+   Start at  05:59:25
+   Duration  5.59s (transform 679ms, setup 310ms, collect 2.11s, tests 2.39s, environment 0ms, prepare 359ms)
+
+ ELIFECYCLE  Test failed. See above for more details.

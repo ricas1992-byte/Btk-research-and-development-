@@ -1,0 +1,1043 @@
+
+> cognitive-discipline-workspace@1.0.0 test /home/user/Btk-research-and-development-
+> vitest run
+
+
+ RUN  v1.3.1 /home/user/Btk-research-and-development-
+
+ ❯ tests/domain/services/TaskService.test.ts  (27 tests | 27 failed) 598ms
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > createTask > should create task from locked decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > createTask > should throw error when creating from unlocked decision (ENF-03)
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > createTask > should throw error when decision does not exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > createTask > should allow multiple tasks from same decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > getTask > should retrieve task by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > getTask > should return null for non-existent task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should return empty array when no tasks exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should return all tasks for decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should only return tasks for specified decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update task title
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update task description
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update both title and description
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > updateTask > should throw error for non-existent task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > startTask > should start pending task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > startTask > should throw error for non-existent task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > startTask > should throw error when starting non-pending task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > completeTask > should complete in-progress task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > completeTask > should throw error for non-existent task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > completeTask > should throw error when completing non-in-progress task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should cancel pending task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should cancel in-progress task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should throw error for non-existent task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should throw error when cancelling completed task
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > ENF-03: Task from locked decision only > should enforce locked decision requirement
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should follow complete workflow: PENDING → IN_PROGRESS → COMPLETED
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should support pause and resume
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should support cancel from any non-terminal state
+     → initializeDatabase is not a function
+stdout | tests/integration/db.test.ts > Database Integration > should initialize database successfully
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should return same instance on subsequent calls
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should pass health check when database is accessible
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should have foreign keys enabled
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should have WAL mode enabled
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create phase table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create decision table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create task table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create document table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create parking_lot table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query phase records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should enforce single active phase constraint
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query decision records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should enforce foreign key constraint on decision.phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query task records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query document records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query parking_lot records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should cascade delete decisions when phase is deleted
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should return database statistics
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create and use migrations tracking table
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/integration/db.test.ts  (20 tests) 723ms
+ ❯ tests/domain/entities/Task.test.ts  (24 tests | 5 failed) 34ms
+   ❯ tests/domain/entities/Task.test.ts > Task Entity > start method > should throw if not in PENDING status
+     → expected [Function] to throw error including 'Task must be PENDING to start' but got 'Cannot start task in IN_PROGRESS stat…'
+   ❯ tests/domain/entities/Task.test.ts > Task Entity > complete method > should throw if not in IN_PROGRESS status
+     → expected [Function] to throw error including 'Task must be IN_PROGRESS to complete' but got 'Cannot complete task in PENDING status'
+   ❯ tests/domain/entities/Task.test.ts > Task Entity > complete method > should throw if already COMPLETED
+     → expected [Function] to throw error including 'Task must be IN_PROGRESS to complete' but got 'Cannot complete task in COMPLETED sta…'
+   ❯ tests/domain/entities/Task.test.ts > Task Entity > cancel method > should throw if already in terminal state
+     → expected [Function] to throw error including 'Cannot cancel task in terminal state' but got 'Cannot cancel task in COMPLETED status'
+   ❯ tests/domain/entities/Task.test.ts > Task Entity > pause method > should throw if not IN_PROGRESS
+     → expected [Function] to throw error including 'Task must be IN_PROGRESS to pause' but got 'Cannot pause task in PENDING status'
+ ❯ tests/domain/repositories/DecisionRepository.test.ts  (22 tests | 22 failed) 25ms
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > create > should persist decision to database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > create > should store correct hash in database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should retrieve decision by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should return null for non-existent id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should verify hash on read (PROOF-07)
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should return empty array when no decisions exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should return all decisions for phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should only return decisions for specified phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should verify hash on all reads
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should return only locked decisions
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should return empty array when no locked decisions exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should verify hash on all reads
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should update decision in database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should recompute and store new hash
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should update status
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > delete > should remove decision from database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > delete > should not throw for non-existent id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findLockedByPhaseId
+     → initializeDatabase is not a function
+ ❯ tests/domain/repositories/PhaseRepository.test.ts  (22 tests | 22 failed) 22ms
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > create > should persist phase to database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > create > should store correct hash in database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should retrieve phase by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should return null for non-existent id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should verify hash on read (PROOF-07)
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should include error details in hash mismatch (PROOF-07)
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return active phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return null when no active phase exists
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return null after phase is completed
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should verify hash on read
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should return empty array when no phases exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should return all phases
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should verify hash on all reads
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should update phase in database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should recompute and store new hash
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should update status
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return false when no phases exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return true when active phase exists
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return false after completing phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted name field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+     → initializeDatabase is not a function
+ ❯ tests/domain/repositories/DocumentRepository.test.ts  (18 tests | 18 failed) 18ms
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > create > should persist document to database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > create > should store correct hash in database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should retrieve document by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should return null for non-existent id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should verify hash on read (PROOF-07)
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should return empty array when no documents exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should return all documents for phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should only return documents for specified phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should verify hash on all reads
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > update > should update document in database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > update > should recompute and store new hash
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > delete > should remove document from database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > delete > should not throw for non-existent id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+     → initializeDatabase is not a function
+ ❯ tests/domain/services/DecisionService.test.ts  (22 tests | 22 failed) 22ms
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > createDecision > should create decision with DRAFT status
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > createDecision > should allow multiple decisions for same phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > getDecision > should retrieve decision by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > getDecision > should return null for non-existent decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should return empty array when no decisions exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should return all decisions for phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should only return decisions for specified phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > getLockedDecisionsByPhase > should return only locked decisions
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > getLockedDecisionsByPhase > should return empty array when no locked decisions exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should update draft decision content
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should throw error when updating locked decision (ENF-02)
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should throw error for non-existent decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should lock draft decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should make decision immutable after lock
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should throw error when locking already locked decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should throw error for non-existent decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should delete draft decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should throw error when deleting locked decision (ENF-02)
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should throw error for non-existent decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should prevent all modifications after lock
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should allow updates before lock
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should preserve content hash after lock
+     → initializeDatabase is not a function
+ ❯ tests/domain/repositories/TaskRepository.test.ts  (17 tests | 17 failed) 17ms
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > create > should persist task to database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > create > should store correct hash in database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should retrieve task by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should return null for non-existent id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should verify hash on read (PROOF-07)
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should return empty array when no tasks exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should return all tasks for decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should only return tasks for specified decision
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should verify hash on all reads
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should update task in database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should recompute and store new hash
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should update status
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should verify on findByDecisionId
+     → initializeDatabase is not a function
+ ❯ tests/domain/services/DocumentService.test.ts  (21 tests | 21 failed) 21ms
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > createDocument > should create document with all fields
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > createDocument > should allow multiple documents for same phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > getDocument > should retrieve document by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > getDocument > should return null for non-existent document
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should return empty array when no documents exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should return all documents for phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should only return documents for specified phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update document title only
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update document content only
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update both title and content
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should throw error for non-existent document
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should handle empty updates
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should delete document
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should not throw error for non-existent document
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should remove document from phase list
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle plain text without markdown
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should preserve special characters
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle multiline content
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle empty content
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > document lifecycle > should support create, update, delete workflow
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/DocumentService.test.ts > DocumentService > document lifecycle > should support multiple updates
+     → initializeDatabase is not a function
+ ❯ tests/domain/services/PhaseService.test.ts  (23 tests | 23 failed) 21ms
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should create new phase when no active phase exists
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should throw error when active phase already exists (ENF-01)
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should allow creating new phase after completing previous
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should allow creating new phase after abandoning previous
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > getPhase > should retrieve phase by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > getPhase > should return null for non-existent phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return active phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return null when no active phase exists
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return null after completing phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > getAllPhases > should return empty array when no phases exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > getAllPhases > should return all phases
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update phase name
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update phase description
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update both name and description
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should throw error for non-existent phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should complete active phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should throw error for non-existent phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should make phase terminal (cannot complete again)
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should abandon active phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should throw error for non-existent phase
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should make phase terminal (cannot abandon again)
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > ENF-01: Single active phase constraint > should enforce only one active phase at a time
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/PhaseService.test.ts > PhaseService > ENF-01: Single active phase constraint > should allow sequential phases after completion
+     → initializeDatabase is not a function
+ ✓ tests/unit/verification.test.ts  (16 tests) 15ms
+ ❯ tests/domain/services/ParkingLotService.test.ts  (22 tests | 22 failed) 19ms
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with content
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with source_phase_id
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with null source_phase_id
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should allow rapid creation of multiple entries
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getEntry > should retrieve entry by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getEntry > should return null for non-existent entry
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return empty array when no entries exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return all entries
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return entries with different source phases
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should update entry content
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should preserve source_phase_id when updating
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should throw error for non-existent entry
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should handle empty content
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should delete entry
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should not throw error for non-existent entry
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should remove entry from all entries list
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support rapid idea capture
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support multiline content
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support entries with special characters
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support create, update, delete workflow
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support multiple updates
+     → initializeDatabase is not a function
+   ❯ tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support bulk operations
+     → initializeDatabase is not a function
+ ❯ tests/domain/repositories/ParkingLotRepository.test.ts  (16 tests | 16 failed) 14ms
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry to database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry with source_phase_id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should retrieve entry by id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should return null for non-existent id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should NOT verify hash (no hash field per spec)
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return empty array when no entries exist
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return all entries
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return entries with different source_phase_id values
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should update entry in database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should preserve source_phase_id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should remove entry from database
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should not throw for non-existent id
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should remove entry from findAll results
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should allow rapid CRUD operations
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should support multiline content
+     → initializeDatabase is not a function
+   ❯ tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should support special characters
+     → initializeDatabase is not a function
+ ❯ tests/domain/entities/Phase.test.ts  (18 tests | 4 failed) 19ms
+   ❯ tests/domain/entities/Phase.test.ts > Phase Entity > complete method > should throw if already COMPLETED
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in COMPLETED st…'
+   ❯ tests/domain/entities/Phase.test.ts > Phase Entity > complete method > should throw if ABANDONED
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in ABANDONED st…'
+   ❯ tests/domain/entities/Phase.test.ts > Phase Entity > abandon method > should throw if already COMPLETED
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in COMPLETED sta…'
+   ❯ tests/domain/entities/Phase.test.ts > Phase Entity > abandon method > should throw if already ABANDONED
+     → expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in ABANDONED sta…'
+ ✓ tests/acceptance/workflows.test.ts  (8 tests) 16ms
+ ✓ tests/integration/api.test.ts  (12 tests) 121ms
+ ❯ tests/domain/entities/Decision.test.ts  (15 tests | 1 failed) 15ms
+   ❯ tests/domain/entities/Decision.test.ts > Decision Entity > factory method > should create decision with DRAFT status
+     → expected undefined not to be undefined
+ ✓ tests/domain/entities/Document.test.ts  (13 tests) 11ms
+ ✓ tests/unit/hash.test.ts  (16 tests) 13ms
+ ✓ tests/domain/entities/ParkingLot.test.ts  (14 tests) 11ms
+ ✓ tests/unit/invariants.test.ts  (7 tests) 10ms
+ ✓ tests/unit/state-machines.test.ts  (17 tests) 12ms
+ ✓ tests/integration/misuse.test.ts  (7 tests) 9ms
+ ✓ tests/unit/hash-utils.test.ts  (11 tests) 8ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 220 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/domain/entities/Decision.test.ts > Decision Entity > factory method > should create decision with DRAFT status
+AssertionError: expected undefined not to be undefined
+ ❯ tests/domain/entities/Decision.test.ts:25:35
+     23|       expect(decision.status).toBe('DRAFT');
+     24|       expect(decision.created_at).toBeDefined();
+     25|       expect(decision.updated_at).toBeDefined();
+       |                                   ^
+     26|       expect(decision.content_hash).toBeDefined();
+     27|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/220]⎯
+
+ FAIL  tests/domain/entities/Phase.test.ts > Phase Entity > complete method > should throw if already COMPLETED
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in COMPLETED st…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot complete phase in COMPLETED status
+
+ ❯ tests/domain/entities/Phase.test.ts:120:42
+    118|       const completed = phase.complete();
+    119| 
+    120|       expect(() => completed.complete()).toThrow('Phase is already in …
+       |                                          ^
+    121|     });
+    122| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/220]⎯
+
+ FAIL  tests/domain/entities/Phase.test.ts > Phase Entity > complete method > should throw if ABANDONED
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot complete phase in ABANDONED st…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot complete phase in ABANDONED status
+
+ ❯ tests/domain/entities/Phase.test.ts:131:42
+    129|       const abandoned = phase.abandon();
+    130| 
+    131|       expect(() => abandoned.complete()).toThrow('Phase is already in …
+       |                                          ^
+    132|     });
+    133| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/220]⎯
+
+ FAIL  tests/domain/entities/Phase.test.ts > Phase Entity > abandon method > should throw if already COMPLETED
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in COMPLETED sta…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot abandon phase in COMPLETED status
+
+ ❯ tests/domain/entities/Phase.test.ts:169:41
+    167|       const completed = phase.complete();
+    168| 
+    169|       expect(() => completed.abandon()).toThrow('Phase is already in t…
+       |                                         ^
+    170|     });
+    171| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/220]⎯
+
+ FAIL  tests/domain/entities/Phase.test.ts > Phase Entity > abandon method > should throw if already ABANDONED
+AssertionError: expected [Function] to throw error including 'Phase is already in terminal state' but got 'Cannot abandon phase in ABANDONED sta…'
+
+- Expected
++ Received
+
+- Phase is already in terminal state
++ Cannot abandon phase in ABANDONED status
+
+ ❯ tests/domain/entities/Phase.test.ts:180:41
+    178|       const abandoned = phase.abandon();
+    179| 
+    180|       expect(() => abandoned.abandon()).toThrow('Phase is already in t…
+       |                                         ^
+    181|     });
+    182| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/220]⎯
+
+ FAIL  tests/domain/entities/Task.test.ts > Task Entity > start method > should throw if not in PENDING status
+AssertionError: expected [Function] to throw error including 'Task must be PENDING to start' but got 'Cannot start task in IN_PROGRESS stat…'
+
+- Expected
++ Received
+
+- Task must be PENDING to start
++ Cannot start task in IN_PROGRESS status
+
+ ❯ tests/domain/entities/Task.test.ts:130:37
+    128|       const started = task.start();
+    129| 
+    130|       expect(() => started.start()).toThrow('Task must be PENDING to s…
+       |                                     ^
+    131|     });
+    132| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/220]⎯
+
+ FAIL  tests/domain/entities/Task.test.ts > Task Entity > complete method > should throw if not in IN_PROGRESS status
+AssertionError: expected [Function] to throw error including 'Task must be IN_PROGRESS to complete' but got 'Cannot complete task in PENDING status'
+
+- Expected
++ Received
+
+- Task must be IN_PROGRESS to complete
++ Cannot complete task in PENDING status
+
+ ❯ tests/domain/entities/Task.test.ts:170:37
+    168|       });
+    169| 
+    170|       expect(() => task.complete()).toThrow('Task must be IN_PROGRESS …
+       |                                     ^
+    171|     });
+    172| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/220]⎯
+
+ FAIL  tests/domain/entities/Task.test.ts > Task Entity > complete method > should throw if already COMPLETED
+AssertionError: expected [Function] to throw error including 'Task must be IN_PROGRESS to complete' but got 'Cannot complete task in COMPLETED sta…'
+
+- Expected
++ Received
+
+- Task must be IN_PROGRESS to complete
++ Cannot complete task in COMPLETED status
+
+ ❯ tests/domain/entities/Task.test.ts:182:42
+    180|       const completed = task.start().complete();
+    181| 
+    182|       expect(() => completed.complete()).toThrow('Task must be IN_PROG…
+       |                                          ^
+    183|     });
+    184| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/220]⎯
+
+ FAIL  tests/domain/entities/Task.test.ts > Task Entity > cancel method > should throw if already in terminal state
+AssertionError: expected [Function] to throw error including 'Cannot cancel task in terminal state' but got 'Cannot cancel task in COMPLETED status'
+
+- Expected
++ Received
+
+- Cannot cancel task in terminal state
++ Cannot cancel task in COMPLETED status
+
+ ❯ tests/domain/entities/Task.test.ts:237:40
+    235|       const completed = task.start().complete();
+    236| 
+    237|       expect(() => completed.cancel()).toThrow('Cannot cancel task in …
+       |                                        ^
+    238|     });
+    239| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/220]⎯
+
+ FAIL  tests/domain/entities/Task.test.ts > Task Entity > pause method > should throw if not IN_PROGRESS
+AssertionError: expected [Function] to throw error including 'Task must be IN_PROGRESS to pause' but got 'Cannot pause task in PENDING status'
+
+- Expected
++ Received
+
+- Task must be IN_PROGRESS to pause
++ Cannot pause task in PENDING status
+
+ ❯ tests/domain/entities/Task.test.ts:277:34
+    275|       });
+    276| 
+    277|       expect(() => task.pause()).toThrow('Task must be IN_PROGRESS to …
+       |                                  ^
+    278|     });
+    279| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/220]⎯
+
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > create > should persist decision to database
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > create > should store correct hash in database
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should retrieve decision by id
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should return null for non-existent id
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should verify hash on read (PROOF-07)
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should return empty array when no decisions exist
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should return all decisions for phase
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should only return decisions for specified phase
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should verify hash on all reads
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should return only locked decisions
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should return empty array when no locked decisions exist
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should verify hash on all reads
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should update decision in database
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should recompute and store new hash
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should update status
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > delete > should remove decision from database
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > delete > should not throw for non-existent id
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+ FAIL  tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > hash verification integrity (PROOF-07) > should verify on findLockedByPhaseId
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/repositories/DecisionRepository.test.ts:19:5
+     17| 
+     18|   beforeEach(() => {
+     19|     initializeDatabase(':memory:');
+       |     ^
+     20|     repository = new DecisionRepository(getDb());
+     21| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/220]⎯
+
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > create > should persist document to database
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > create > should store correct hash in database
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should retrieve document by id
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should return null for non-existent id
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should verify hash on read (PROOF-07)
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should return empty array when no documents exist
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should return all documents for phase
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should only return documents for specified phase
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should verify hash on all reads
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > update > should update document in database
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > update > should recompute and store new hash
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > delete > should remove document from database
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > delete > should not throw for non-existent id
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted content field
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+ FAIL  tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > hash verification integrity (PROOF-07) > should verify on findByPhaseId
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/repositories/DocumentRepository.test.ts:19:5
+     17| 
+     18|   beforeEach(() => {
+     19|     initializeDatabase(':memory:');
+       |     ^
+     20|     repository = new DocumentRepository(getDb());
+     21| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/220]⎯
+
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry to database
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry with source_phase_id
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should retrieve entry by id
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should return null for non-existent id
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should NOT verify hash (no hash field per spec)
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return empty array when no entries exist
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return all entries
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return entries with different source_phase_id values
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should update entry in database
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should preserve source_phase_id
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should remove entry from database
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should not throw for non-existent id
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should remove entry from findAll results
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should allow rapid CRUD operations
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should support multiline content
+ FAIL  tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should support special characters
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/repositories/ParkingLotRepository.test.ts:17:5
+     15| 
+     16|   beforeEach(() => {
+     17|     initializeDatabase(':memory:');
+       |     ^
+     18|     repository = new ParkingLotRepository(getDb());
+     19|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/220]⎯
+
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > create > should persist phase to database
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > create > should store correct hash in database
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should retrieve phase by id
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should return null for non-existent id
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should verify hash on read (PROOF-07)
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should include error details in hash mismatch (PROOF-07)
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return active phase
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return null when no active phase exists
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return null after phase is completed
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should verify hash on read
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should return empty array when no phases exist
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should return all phases
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should verify hash on all reads
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should update phase in database
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should recompute and store new hash
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should update status
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return false when no phases exist
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return true when active phase exists
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return false after completing phase
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted name field
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+ FAIL  tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/repositories/PhaseRepository.test.ts:16:5
+     14| 
+     15|   beforeEach(() => {
+     16|     initializeDatabase(':memory:');
+       |     ^
+     17|     repository = new PhaseRepository(getDb());
+     18|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/220]⎯
+
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > create > should persist task to database
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > create > should store correct hash in database
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should retrieve task by id
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should return null for non-existent id
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should verify hash on read (PROOF-07)
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should return empty array when no tasks exist
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should return all tasks for decision
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should only return tasks for specified decision
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should verify hash on all reads
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should update task in database
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should recompute and store new hash
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should update status
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted title field
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted description field
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should detect corrupted hash field
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should pass verification with correct data
+ FAIL  tests/domain/repositories/TaskRepository.test.ts > TaskRepository > hash verification integrity (PROOF-07) > should verify on findByDecisionId
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/repositories/TaskRepository.test.ts:21:5
+     19| 
+     20|   beforeEach(() => {
+     21|     initializeDatabase(':memory:');
+       |     ^
+     22|     repository = new TaskRepository(getDb());
+     23| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/220]⎯
+
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > createDecision > should create decision with DRAFT status
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > createDecision > should allow multiple decisions for same phase
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > getDecision > should retrieve decision by id
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > getDecision > should return null for non-existent decision
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should return empty array when no decisions exist
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should return all decisions for phase
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should only return decisions for specified phase
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > getLockedDecisionsByPhase > should return only locked decisions
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > getLockedDecisionsByPhase > should return empty array when no locked decisions exist
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should update draft decision content
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should throw error when updating locked decision (ENF-02)
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should throw error for non-existent decision
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should lock draft decision
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should make decision immutable after lock
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should throw error when locking already locked decision
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should throw error for non-existent decision
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should delete draft decision
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should throw error when deleting locked decision (ENF-02)
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should throw error for non-existent decision
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should prevent all modifications after lock
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should allow updates before lock
+ FAIL  tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should preserve content hash after lock
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/services/DecisionService.test.ts:20:5
+     18| 
+     19|   beforeEach(() => {
+     20|     initializeDatabase(':memory:');
+       |     ^
+     21|     repository = new DecisionRepository(getDb());
+     22|     service = new DecisionService(repository);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/220]⎯
+
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > createDocument > should create document with all fields
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > createDocument > should allow multiple documents for same phase
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > getDocument > should retrieve document by id
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > getDocument > should return null for non-existent document
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should return empty array when no documents exist
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should return all documents for phase
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should only return documents for specified phase
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update document title only
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update document content only
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update both title and content
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should throw error for non-existent document
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should handle empty updates
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should delete document
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should not throw error for non-existent document
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should remove document from phase list
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle plain text without markdown
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should preserve special characters
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle multiline content
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle empty content
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > document lifecycle > should support create, update, delete workflow
+ FAIL  tests/domain/services/DocumentService.test.ts > DocumentService > document lifecycle > should support multiple updates
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/services/DocumentService.test.ts:20:5
+     18| 
+     19|   beforeEach(() => {
+     20|     initializeDatabase(':memory:');
+       |     ^
+     21|     repository = new DocumentRepository(getDb());
+     22|     service = new DocumentService(repository);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/220]⎯
+
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with content
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with source_phase_id
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with null source_phase_id
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should allow rapid creation of multiple entries
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getEntry > should retrieve entry by id
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getEntry > should return null for non-existent entry
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return empty array when no entries exist
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return all entries
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return entries with different source phases
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should update entry content
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should preserve source_phase_id when updating
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should throw error for non-existent entry
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should handle empty content
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should delete entry
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should not throw error for non-existent entry
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should remove entry from all entries list
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support rapid idea capture
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support multiline content
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support entries with special characters
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support create, update, delete workflow
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support multiple updates
+ FAIL  tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support bulk operations
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/services/ParkingLotService.test.ts:16:5
+     14| 
+     15|   beforeEach(() => {
+     16|     initializeDatabase(':memory:');
+       |     ^
+     17|     repository = new ParkingLotRepository(getDb());
+     18|     service = new ParkingLotService(repository);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/220]⎯
+
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should create new phase when no active phase exists
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should throw error when active phase already exists (ENF-01)
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should allow creating new phase after completing previous
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should allow creating new phase after abandoning previous
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > getPhase > should retrieve phase by id
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > getPhase > should return null for non-existent phase
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return active phase
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return null when no active phase exists
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return null after completing phase
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > getAllPhases > should return empty array when no phases exist
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > getAllPhases > should return all phases
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update phase name
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update phase description
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update both name and description
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should throw error for non-existent phase
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should complete active phase
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should throw error for non-existent phase
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should make phase terminal (cannot complete again)
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should abandon active phase
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should throw error for non-existent phase
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should make phase terminal (cannot abandon again)
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > ENF-01: Single active phase constraint > should enforce only one active phase at a time
+ FAIL  tests/domain/services/PhaseService.test.ts > PhaseService > ENF-01: Single active phase constraint > should allow sequential phases after completion
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/services/PhaseService.test.ts:16:5
+     14| 
+     15|   beforeEach(() => {
+     16|     initializeDatabase(':memory:');
+       |     ^
+     17|     repository = new PhaseRepository(getDb());
+     18|     service = new PhaseService(repository);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/220]⎯
+
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > createTask > should create task from locked decision
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > createTask > should throw error when creating from unlocked decision (ENF-03)
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > createTask > should throw error when decision does not exist
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > createTask > should allow multiple tasks from same decision
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > getTask > should retrieve task by id
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > getTask > should return null for non-existent task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should return empty array when no tasks exist
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should return all tasks for decision
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should only return tasks for specified decision
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update task title
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update task description
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update both title and description
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > updateTask > should throw error for non-existent task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > startTask > should start pending task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > startTask > should throw error for non-existent task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > startTask > should throw error when starting non-pending task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > completeTask > should complete in-progress task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > completeTask > should throw error for non-existent task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > completeTask > should throw error when completing non-in-progress task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should cancel pending task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should cancel in-progress task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should throw error for non-existent task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should throw error when cancelling completed task
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > ENF-03: Task from locked decision only > should enforce locked decision requirement
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should follow complete workflow: PENDING → IN_PROGRESS → COMPLETED
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should support pause and resume
+ FAIL  tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should support cancel from any non-terminal state
+TypeError: initializeDatabase is not a function
+ ❯ tests/domain/services/TaskService.test.ts:22:5
+     20| 
+     21|   beforeEach(() => {
+     22|     initializeDatabase(':memory:');
+       |     ^
+     23|     taskRepository = new TaskRepository(getDb());
+     24|     const decisionRepo = new DecisionRepository(getDb());
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/220]⎯
+
+ Test Files  13 failed | 11 passed (24)
+      Tests  220 failed | 188 passed (408)
+   Start at  05:55:34
+   Duration  5.03s (transform 682ms, setup 309ms, collect 2.09s, tests 1.79s, environment 0ms, prepare 377ms)
+
+ ELIFECYCLE  Test failed. See above for more details.
