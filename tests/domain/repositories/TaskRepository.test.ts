@@ -10,7 +10,7 @@ import { Decision } from '../../../src/domain/entities/Decision.js';
 import { DecisionRepository } from '../../../src/domain/repositories/DecisionRepository.js';
 import { Phase } from '../../../src/domain/entities/Phase.js';
 import { PhaseRepository } from '../../../src/domain/repositories/PhaseRepository.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 import { HashVerificationError } from '../../../src/core/verification.js';
 
 describe('TaskRepository', () => {
@@ -18,17 +18,17 @@ describe('TaskRepository', () => {
   let testDecisionId: string;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    repository = new TaskRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    repository = new TaskRepository(getDatabase());
 
-    const phaseRepo = new PhaseRepository(getDb());
+    const phaseRepo = new PhaseRepository(getDatabase());
     const phase = Phase.create({
       name: 'Test Phase',
       description: 'Description',
     });
     phaseRepo.create(phase);
 
-    const decisionRepo = new DecisionRepository(getDb());
+    const decisionRepo = new DecisionRepository(getDatabase());
     const decision = Decision.create({
       phase_id: phase.id,
       content: 'Test decision',
@@ -102,7 +102,7 @@ describe('TaskRepository', () => {
 
       repository.create(task);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE tasks SET content_hash = ? WHERE id = ?').run('wrong-hash', task.id);
 
       expect(() => repository.findById(task.id)).toThrow(HashVerificationError);
@@ -169,7 +169,7 @@ describe('TaskRepository', () => {
       repository.create(task1);
       repository.create(task2);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE tasks SET content_hash = ? WHERE id = ?').run('wrong-hash', task1.id);
 
       expect(() => repository.findByDecisionId(testDecisionId)).toThrow(HashVerificationError);
@@ -243,7 +243,7 @@ describe('TaskRepository', () => {
 
       repository.create(task);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE tasks SET title = ? WHERE id = ?').run('Tampered Title', task.id);
 
       expect(() => repository.findById(task.id)).toThrow(HashVerificationError);
@@ -258,7 +258,7 @@ describe('TaskRepository', () => {
 
       repository.create(task);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE tasks SET description = ? WHERE id = ?').run(
         'Tampered Description',
         task.id
@@ -276,7 +276,7 @@ describe('TaskRepository', () => {
 
       repository.create(task);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE tasks SET content_hash = ? WHERE id = ?').run('corrupted-hash', task.id);
 
       expect(() => repository.findById(task.id)).toThrow(HashVerificationError);
@@ -307,7 +307,7 @@ describe('TaskRepository', () => {
 
       repository.create(task);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE tasks SET title = ? WHERE id = ?').run('Tampered', task.id);
 
       expect(() => repository.findByDecisionId(testDecisionId)).toThrow(HashVerificationError);

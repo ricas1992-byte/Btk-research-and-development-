@@ -8,7 +8,7 @@ import { DocumentRepository } from '../../../src/domain/repositories/DocumentRep
 import { Document } from '../../../src/domain/entities/Document.js';
 import { Phase } from '../../../src/domain/entities/Phase.js';
 import { PhaseRepository } from '../../../src/domain/repositories/PhaseRepository.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 import { HashVerificationError } from '../../../src/core/verification.js';
 
 describe('DocumentRepository', () => {
@@ -16,10 +16,10 @@ describe('DocumentRepository', () => {
   let testPhaseId: string;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    repository = new DocumentRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    repository = new DocumentRepository(getDatabase());
 
-    const phaseRepo = new PhaseRepository(getDb());
+    const phaseRepo = new PhaseRepository(getDatabase());
     const phase = Phase.create({
       name: 'Test Phase',
       description: 'Description',
@@ -95,7 +95,7 @@ describe('DocumentRepository', () => {
 
       repository.create(document);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE documents SET content_hash = ? WHERE id = ?').run(
         'wrong-hash',
         document.id
@@ -165,7 +165,7 @@ describe('DocumentRepository', () => {
       repository.create(doc1);
       repository.create(doc2);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE documents SET content_hash = ? WHERE id = ?').run('wrong-hash', doc1.id);
 
       expect(() => repository.findByPhaseId(testPhaseId)).toThrow(HashVerificationError);
@@ -247,7 +247,7 @@ describe('DocumentRepository', () => {
 
       repository.create(document);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE documents SET title = ? WHERE id = ?').run('Tampered Title', document.id);
 
       expect(() => repository.findById(document.id)).toThrow(HashVerificationError);
@@ -262,7 +262,7 @@ describe('DocumentRepository', () => {
 
       repository.create(document);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE documents SET content = ? WHERE id = ?').run(
         'Tampered Content',
         document.id
@@ -280,7 +280,7 @@ describe('DocumentRepository', () => {
 
       repository.create(document);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE documents SET content_hash = ? WHERE id = ?').run(
         'corrupted-hash',
         document.id
@@ -314,7 +314,7 @@ describe('DocumentRepository', () => {
 
       repository.create(document);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE documents SET title = ? WHERE id = ?').run('Tampered', document.id);
 
       expect(() => repository.findByPhaseId(testPhaseId)).toThrow(HashVerificationError);

@@ -6,15 +6,15 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { PhaseRepository } from '../../../src/domain/repositories/PhaseRepository.js';
 import { Phase } from '../../../src/domain/entities/Phase.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 import { HashVerificationError } from '../../../src/core/verification.js';
 
 describe('PhaseRepository', () => {
   let repository: PhaseRepository;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    repository = new PhaseRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    repository = new PhaseRepository(getDatabase());
   });
 
   afterEach(() => {
@@ -78,7 +78,7 @@ describe('PhaseRepository', () => {
 
       repository.create(phase);
 
-      const db = getDb();
+      const db = getDatabase();
       const wrongHash = 'wrong-hash-value';
       db.prepare('UPDATE phases SET content_hash = ? WHERE id = ?').run(wrongHash, phase.id);
 
@@ -93,7 +93,7 @@ describe('PhaseRepository', () => {
 
       repository.create(phase);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE phases SET content_hash = ? WHERE id = ?').run('wrong-hash', phase.id);
 
       try {
@@ -155,7 +155,7 @@ describe('PhaseRepository', () => {
 
       repository.create(phase);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE phases SET content_hash = ? WHERE id = ?').run('wrong-hash', phase.id);
 
       expect(() => repository.findActive()).toThrow(HashVerificationError);
@@ -207,7 +207,7 @@ describe('PhaseRepository', () => {
       repository.update(phase1.complete());
       repository.create(phase2);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE phases SET content_hash = ? WHERE id = ?').run('wrong-hash', phase1.id);
 
       expect(() => repository.findAll()).toThrow(HashVerificationError);
@@ -314,7 +314,7 @@ describe('PhaseRepository', () => {
 
       repository.create(phase);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE phases SET name = ? WHERE id = ?').run('Tampered Name', phase.id);
 
       expect(() => repository.findById(phase.id)).toThrow(HashVerificationError);
@@ -328,7 +328,7 @@ describe('PhaseRepository', () => {
 
       repository.create(phase);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE phases SET description = ? WHERE id = ?').run(
         'Tampered Description',
         phase.id

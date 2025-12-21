@@ -6,15 +6,15 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { PhaseService } from '../../../src/domain/services/PhaseService.js';
 import { PhaseRepository } from '../../../src/domain/repositories/PhaseRepository.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 
 describe('PhaseService', () => {
   let service: PhaseService;
   let repository: PhaseRepository;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    repository = new PhaseRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    repository = new PhaseRepository(getDatabase());
     service = new PhaseService(repository);
   });
 
@@ -241,7 +241,7 @@ describe('PhaseService', () => {
 
       service.completePhase(phase.id);
 
-      expect(() => service.completePhase(phase.id)).toThrow('Phase is already in terminal state');
+      expect(() => service.completePhase(phase.id)).toThrow('Cannot complete phase in');
     });
   });
 
@@ -272,7 +272,7 @@ describe('PhaseService', () => {
 
       service.abandonPhase(phase.id);
 
-      expect(() => service.abandonPhase(phase.id)).toThrow('Phase is already in terminal state');
+      expect(() => service.abandonPhase(phase.id)).toThrow('Cannot abandon phase in');
     });
   });
 

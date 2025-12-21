@@ -127,7 +127,7 @@ describe('Task Entity', () => {
 
       const started = task.start();
 
-      expect(() => started.start()).toThrow('Task must be PENDING to start');
+      expect(() => started.start()).toThrow('Cannot start task in');
     });
 
     it('should return new instance (immutability)', () => {
@@ -167,7 +167,7 @@ describe('Task Entity', () => {
         description: 'Description',
       });
 
-      expect(() => task.complete()).toThrow('Task must be IN_PROGRESS to complete');
+      expect(() => task.complete()).toThrow('Cannot complete task in');
     });
 
     it('should throw if already COMPLETED', () => {
@@ -179,7 +179,7 @@ describe('Task Entity', () => {
 
       const completed = task.start().complete();
 
-      expect(() => completed.complete()).toThrow('Task must be IN_PROGRESS to complete');
+      expect(() => completed.complete()).toThrow('Cannot complete task in');
     });
 
     it('should return new instance (immutability)', () => {
@@ -234,7 +234,7 @@ describe('Task Entity', () => {
 
       const completed = task.start().complete();
 
-      expect(() => completed.cancel()).toThrow('Cannot cancel task in terminal state');
+      expect(() => completed.cancel()).toThrow('Cannot cancel task in');
     });
 
     it('should return new instance (immutability)', () => {
@@ -274,7 +274,7 @@ describe('Task Entity', () => {
         description: 'Description',
       });
 
-      expect(() => task.pause()).toThrow('Task must be IN_PROGRESS to pause');
+      expect(() => task.pause()).toThrow('Cannot pause task in');
     });
 
     it('should return new instance (immutability)', () => {

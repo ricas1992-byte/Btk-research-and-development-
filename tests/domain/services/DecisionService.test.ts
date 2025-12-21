@@ -8,7 +8,7 @@ import { DecisionService } from '../../../src/domain/services/DecisionService.js
 import { DecisionRepository } from '../../../src/domain/repositories/DecisionRepository.js';
 import { PhaseService } from '../../../src/domain/services/PhaseService.js';
 import { PhaseRepository } from '../../../src/domain/repositories/PhaseRepository.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 
 describe('DecisionService', () => {
   let service: DecisionService;
@@ -17,11 +17,11 @@ describe('DecisionService', () => {
   let testPhaseId: string;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    repository = new DecisionRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    repository = new DecisionRepository(getDatabase());
     service = new DecisionService(repository);
 
-    const phaseRepo = new PhaseRepository(getDb());
+    const phaseRepo = new PhaseRepository(getDatabase());
     phaseService = new PhaseService(phaseRepo);
 
     const phase = phaseService.createPhase({

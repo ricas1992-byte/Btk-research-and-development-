@@ -8,7 +8,7 @@ import { DocumentService } from '../../../src/domain/services/DocumentService.js
 import { DocumentRepository } from '../../../src/domain/repositories/DocumentRepository.js';
 import { PhaseService } from '../../../src/domain/services/PhaseService.js';
 import { PhaseRepository } from '../../../src/domain/repositories/PhaseRepository.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 
 describe('DocumentService', () => {
   let service: DocumentService;
@@ -17,11 +17,11 @@ describe('DocumentService', () => {
   let testPhaseId: string;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    repository = new DocumentRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    repository = new DocumentRepository(getDatabase());
     service = new DocumentService(repository);
 
-    const phaseRepo = new PhaseRepository(getDb());
+    const phaseRepo = new PhaseRepository(getDatabase());
     phaseService = new PhaseService(phaseRepo);
 
     const phase = phaseService.createPhase({

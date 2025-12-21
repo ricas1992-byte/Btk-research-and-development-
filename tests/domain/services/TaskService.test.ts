@@ -10,21 +10,22 @@ import { DecisionService } from '../../../src/domain/services/DecisionService.js
 import { DecisionRepository } from '../../../src/domain/repositories/DecisionRepository.js';
 import { PhaseService } from '../../../src/domain/services/PhaseService.js';
 import { PhaseRepository } from '../../../src/domain/repositories/PhaseRepository.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 
 describe('TaskService', () => {
   let service: TaskService;
   let taskRepository: TaskRepository;
   let decisionService: DecisionService;
   let testDecisionId: string;
+  let testPhaseId: string;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    taskRepository = new TaskRepository(getDb());
-    const decisionRepo = new DecisionRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    taskRepository = new TaskRepository(getDatabase());
+    const decisionRepo = new DecisionRepository(getDatabase());
     service = new TaskService(taskRepository, decisionRepo);
 
-    const phaseRepo = new PhaseRepository(getDb());
+    const phaseRepo = new PhaseRepository(getDatabase());
     const phaseService = new PhaseService(phaseRepo);
     decisionService = new DecisionService(decisionRepo);
 
@@ -32,6 +33,7 @@ describe('TaskService', () => {
       name: 'Test Phase',
       description: 'Description',
     });
+    testPhaseId = phase.id;
 
     const decision = decisionService.createDecision({
       phase_id: phase.id,
@@ -63,7 +65,7 @@ describe('TaskService', () => {
 
     it('should throw error when creating from unlocked decision (ENF-03)', () => {
       const decision = decisionService.createDecision({
-        phase_id: 'phase-id',
+        phase_id: testPhaseId,
         content: 'Draft decision',
       });
 
@@ -242,7 +244,7 @@ describe('TaskService', () => {
 
       service.startTask(task.id);
 
-      expect(() => service.startTask(task.id)).toThrow('Task must be PENDING to start');
+      expect(() => service.startTask(task.id)).toThrow('Cannot start task in');
     });
   });
 
@@ -274,7 +276,7 @@ describe('TaskService', () => {
         description: 'Description',
       });
 
-      expect(() => service.completeTask(task.id)).toThrow('Task must be IN_PROGRESS to complete');
+      expect(() => service.completeTask(task.id)).toThrow('Cannot complete task in');
     });
   });
 
@@ -319,14 +321,14 @@ describe('TaskService', () => {
       service.startTask(task.id);
       service.completeTask(task.id);
 
-      expect(() => service.cancelTask(task.id)).toThrow('Cannot cancel task in terminal state');
+      expect(() => service.cancelTask(task.id)).toThrow('Cannot cancel task in');
     });
   });
 
   describe('ENF-03: Task from locked decision only', () => {
     it('should enforce locked decision requirement', () => {
       const decision = decisionService.createDecision({
-        phase_id: 'phase-id',
+        phase_id: testPhaseId,
         content: 'Draft decision',
       });
 

@@ -8,7 +8,7 @@ import { DecisionRepository } from '../../../src/domain/repositories/DecisionRep
 import { Decision } from '../../../src/domain/entities/Decision.js';
 import { Phase } from '../../../src/domain/entities/Phase.js';
 import { PhaseRepository } from '../../../src/domain/repositories/PhaseRepository.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 import { HashVerificationError } from '../../../src/core/verification.js';
 
 describe('DecisionRepository', () => {
@@ -16,10 +16,10 @@ describe('DecisionRepository', () => {
   let testPhaseId: string;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    repository = new DecisionRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    repository = new DecisionRepository(getDatabase());
 
-    const phaseRepo = new PhaseRepository(getDb());
+    const phaseRepo = new PhaseRepository(getDatabase());
     const phase = Phase.create({
       name: 'Test Phase',
       description: 'Description',
@@ -89,7 +89,7 @@ describe('DecisionRepository', () => {
 
       repository.create(decision);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE decisions SET content_hash = ? WHERE id = ?').run(
         'wrong-hash',
         decision.id
@@ -154,7 +154,7 @@ describe('DecisionRepository', () => {
       repository.create(decision1);
       repository.create(decision2);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE decisions SET content_hash = ? WHERE id = ?').run(
         'wrong-hash',
         decision1.id
@@ -213,7 +213,7 @@ describe('DecisionRepository', () => {
       const locked = decision.lock();
       repository.update(locked);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE decisions SET content_hash = ? WHERE id = ?').run(
         'wrong-hash',
         decision.id
@@ -306,7 +306,7 @@ describe('DecisionRepository', () => {
 
       repository.create(decision);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE decisions SET content = ? WHERE id = ?').run(
         'Tampered content',
         decision.id
@@ -323,7 +323,7 @@ describe('DecisionRepository', () => {
 
       repository.create(decision);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE decisions SET content_hash = ? WHERE id = ?').run(
         'corrupted-hash',
         decision.id
@@ -354,7 +354,7 @@ describe('DecisionRepository', () => {
 
       repository.create(decision);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE decisions SET content = ? WHERE id = ?').run('Tampered', decision.id);
 
       expect(() => repository.findByPhaseId(testPhaseId)).toThrow(HashVerificationError);
@@ -371,7 +371,7 @@ describe('DecisionRepository', () => {
       const locked = decision.lock();
       repository.update(locked);
 
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE decisions SET content = ? WHERE id = ?').run('Tampered', decision.id);
 
       expect(() => repository.findLockedByPhaseId(testPhaseId)).toThrow(HashVerificationError);

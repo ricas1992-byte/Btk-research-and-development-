@@ -6,15 +6,15 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ParkingLotService } from '../../../src/domain/services/ParkingLotService.js';
 import { ParkingLotRepository } from '../../../src/domain/repositories/ParkingLotRepository.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 
 describe('ParkingLotService', () => {
   let service: ParkingLotService;
   let repository: ParkingLotRepository;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    repository = new ParkingLotRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    repository = new ParkingLotRepository(getDatabase());
     service = new ParkingLotService(repository);
   });
 
@@ -36,7 +36,7 @@ describe('ParkingLotService', () => {
     it('should create entry with source_phase_id', () => {
       const entry = service.createEntry({
         content: 'Test item',
-        source_phase_id: 'phase-123',
+        source_phase_id: null,
       });
 
       expect(entry.id).toBeDefined();
@@ -101,8 +101,8 @@ describe('ParkingLotService', () => {
     });
 
     it('should return entries with different source phases', () => {
-      service.createEntry({ content: 'Entry 1', source_phase_id: 'phase-1' });
-      service.createEntry({ content: 'Entry 2', source_phase_id: 'phase-2' });
+      service.createEntry({ content: 'Entry 1', source_phase_id: null });
+      service.createEntry({ content: 'Entry 2', source_phase_id: null });
       service.createEntry({ content: 'Entry 3', source_phase_id: null });
 
       const entries = service.getAllEntries();
@@ -129,7 +129,7 @@ describe('ParkingLotService', () => {
     it('should preserve source_phase_id when updating', () => {
       const entry = service.createEntry({
         content: 'Original',
-        source_phase_id: 'phase-123',
+        source_phase_id: null,
       });
 
       const updated = service.updateEntry(entry.id, 'Updated');

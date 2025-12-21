@@ -8,14 +8,14 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ParkingLotRepository } from '../../../src/domain/repositories/ParkingLotRepository.js';
 import { ParkingLot } from '../../../src/domain/entities/ParkingLot.js';
-import { getDb, initializeDatabase, closeDatabase } from '../../../src/db/connection.js';
+import { getDatabase, initDatabase, closeDatabase } from '../../../src/db/connection.js';
 
 describe('ParkingLotRepository', () => {
   let repository: ParkingLotRepository;
 
   beforeEach(() => {
-    initializeDatabase(':memory:');
-    repository = new ParkingLotRepository(getDb());
+    initDatabase({ path: ':memory:' });
+    repository = new ParkingLotRepository(getDatabase());
   });
 
   afterEach(() => {
@@ -76,7 +76,7 @@ describe('ParkingLotRepository', () => {
       repository.create(entry);
 
       // Directly modify content in database (should NOT throw)
-      const db = getDb();
+      const db = getDatabase();
       db.prepare('UPDATE parking_lot SET content = ? WHERE id = ?').run('Modified content', entry.id);
 
       const retrieved = repository.findById(entry.id);
