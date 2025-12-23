@@ -19,7 +19,6 @@ export function EnforcementFeedback({ error, onDismiss }: EnforcementFeedbackPro
   if (!error) return null;
 
   const isEnforcement = error.code === 'ENFORCEMENT_VIOLATION';
-  const isTransition = error.code === 'INVALID_STATE_TRANSITION';
 
   return (
     <div className={`enforcement-feedback ${isEnforcement ? 'enforcement' : 'transition'}`}>
