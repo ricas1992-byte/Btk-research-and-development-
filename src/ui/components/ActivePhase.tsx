@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
-import { api } from '../api-client';
+import { api, ApiError, type EnforcementError } from '../api-client';
 import { Button } from './shared/Button';
 import { Dialog } from './shared/Dialog';
 import { StatusBadge } from './shared/StatusBadge';
 import { PlainTextArea } from './shared/PlainTextArea';
+import { EnforcementFeedback } from './shared/EnforcementFeedback';
 
 export function ActivePhase({ phase, onRefresh }: any) {
   const [activeTab, setActiveTab] = useState('documents');
   const [documents, setDocuments] = useState<any[]>([]);
   const [decisions, setDecisions] = useState<any[]>([]);
   const [tasks, setTasks] = useState<any[]>([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState<EnforcementError | null>(null);
   const [closeToken, setCloseToken] = useState('');
   const [showCloseDialog, setShowCloseDialog] = useState(false);
   const [closeConfirmation, setCloseConfirmation] = useState('');
@@ -27,13 +28,17 @@ export function ActivePhase({ phase, onRefresh }: any) {
       const [docs, decs, tsks] = (await Promise.all([
         api.getDocuments(phase.id),
         api.getDecisions(phase.id),
-        api.getTasks({ phaseId: phase.id }),
+        api.getTasks({ decision_id: undefined }),
       ])) as [any[], any[], any[]];
       setDocuments(docs);
       setDecisions(decs);
       setTasks(tsks);
     } catch (err: any) {
-      setError(err.message);
+      if (err instanceof ApiError && err.enforcementError) {
+        setError(err.enforcementError);
+      } else {
+        setError({ code: 'ENFORCEMENT_VIOLATION', message: err.message || 'An error occurred' });
+      }
     }
   };
 
@@ -43,19 +48,27 @@ export function ActivePhase({ phase, onRefresh }: any) {
       setCloseToken(response.token);
       setShowCloseDialog(true);
     } catch (err: any) {
-      setError(err.message);
+      if (err instanceof ApiError && err.enforcementError) {
+        setError(err.enforcementError);
+      } else {
+        setError({ code: 'ENFORCEMENT_VIOLATION', message: err.message || 'An error occurred' });
+      }
     }
   };
 
   const handleClosePhase = async () => {
     try {
-      setError('');
+      setError(null);
       await api.closePhase(phase.id, closeToken, closeConfirmation);
       setShowCloseDialog(false);
       setCloseConfirmation('');
       onRefresh();
     } catch (err: any) {
-      setError(err.message);
+      if (err instanceof ApiError && err.enforcementError) {
+        setError(err.enforcementError);
+      } else {
+        setError({ code: 'ENFORCEMENT_VIOLATION', message: err.message || 'An error occurred' });
+      }
     }
   };
 
@@ -81,7 +94,7 @@ export function ActivePhase({ phase, onRefresh }: any) {
         </Button>
       </div>
 
-      {error && <div className="error-message">{error}</div>}
+      <EnforcementFeedback error={error} onDismiss={() => setError(null)} />
 
       <div className="tabs">
         <button
@@ -153,39 +166,51 @@ function DocumentsTab({ phaseId, documents, onRefresh }: any) {
   const [editDoc, setEditDoc] = useState<any>(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState<EnforcementError | null>(null);
 
   const handleCreate = async () => {
     try {
-      setError('');
+      setError(null);
       await api.createDocument(phaseId, title, content);
       setTitle('');
       setContent('');
       setShowDialog(false);
       onRefresh();
     } catch (err: any) {
-      setError(err.message);
+      if (err instanceof ApiError && err.enforcementError) {
+        setError(err.enforcementError);
+      } else {
+        setError({ code: 'ENFORCEMENT_VIOLATION', message: err.message || 'An error occurred' });
+      }
     }
   };
 
   const handleUpdate = async () => {
     try {
-      setError('');
+      setError(null);
       await api.updateDocument(editDoc.id, { title, content });
       setEditDoc(null);
       onRefresh();
     } catch (err: any) {
-      setError(err.message);
+      if (err instanceof ApiError && err.enforcementError) {
+        setError(err.enforcementError);
+      } else {
+        setError({ code: 'ENFORCEMENT_VIOLATION', message: err.message || 'An error occurred' });
+      }
     }
   };
 
   const handleDelete = async (id: string) => {
     try {
-      setError('');
+      setError(null);
       await api.deleteDocument(id);
       onRefresh();
     } catch (err: any) {
-      setError(err.message);
+      if (err instanceof ApiError && err.enforcementError) {
+        setError(err.enforcementError);
+      } else {
+        setError({ code: 'ENFORCEMENT_VIOLATION', message: err.message || 'An error occurred' });
+      }
     }
   };
 
@@ -201,7 +226,7 @@ function DocumentsTab({ phaseId, documents, onRefresh }: any) {
         <Button onClick={() => setShowDialog(true)}>New Document</Button>
       </div>
 
-      {error && <div className="error-message">{error}</div>}
+      <EnforcementFeedback error={error} onDismiss={() => setError(null)} />
 
       {documents.length === 0 && (
         <div className="empty-state">
