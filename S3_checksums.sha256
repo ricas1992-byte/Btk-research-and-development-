@@ -1,0 +1,13 @@
+056feb03571226d992dc7731c74641aca78278a5b70f8e8a607c976d080ec8cf  /home/user/Btk-research-and-development-/src/db/migrations/002_audit_log.sql
+238b58a6be0fef139af70bcbe55faba3bcf7c43c5ea00e82044857c9ba47f79a  /home/user/Btk-research-and-development-/src/domain/entities/AuditLog.ts
+310d990f288688df73f613ef10fa890c154043a9bd201f3739c8ef77f5c9116b  /home/user/Btk-research-and-development-/tests/unit/core/state-machines/task.test.ts
+564a61ef4f91d3128415b06884071f1a140036af03b4dff4d96f4a4e7db631eb  /home/user/Btk-research-and-development-/src/domain/services/Enforcer.ts
+58620ad1269788aec98164be5e43bd0f83c16c1f26022106ce716e9e6284431a  /home/user/Btk-research-and-development-/tests/unit/domain/services/Enforcer.test.ts
+7375e1f09250cfa21d8632ea0ffda35636cf8f21ca4d6bb844cdfcdb4bfa4b87  /home/user/Btk-research-and-development-/src/core/state-machines/task.ts
+8095b0745371f12fe2bf4d3f008972d13c557b1ad4de4db84f55b4275082832c  /home/user/Btk-research-and-development-/src/core/state-machines/phase.ts
+8f27fa63993309b4bdebbf8992413d3f27802ac1a0ebcccf777e36b0af668345  /home/user/Btk-research-and-development-/src/domain/repositories/AuditRepository.ts
+a8b8463dd717a524508c98652e45ecc6f8ecc7615cdba24f68e6e59e2edf70f1  /home/user/Btk-research-and-development-/tests/unit/core/state-machines/phase.test.ts
+d1ef608464ac288c2310ea3e069255aa63c78c508009bd7502b781bd9c3029c3  /home/user/Btk-research-and-development-/tests/unit/core/state-machines/decision.test.ts
+d709b83246e3e649dd2a2631363155321731a30387caedf0f68d16070831c86a  /home/user/Btk-research-and-development-/tests/unit/domain/repositories/AuditRepository.test.ts
+f15cebabcc81a47dd8bc6bc5515cda0449c8a831589ebfbcbc23f50af3241abe  /home/user/Btk-research-and-development-/src/core/state-machines/decision.ts
+f3e9e8fdcc119535c981e6f380a379063a9c3ac6875aa8b2c897459bba8d3ba3  /home/user/Btk-research-and-development-/src/core/state-machines/idea.ts

@@ -1,0 +1,4 @@
+056feb03571226d992dc7731c74641aca78278a5b70f8e8a607c976d080ec8cf  /home/user/Btk-research-and-development-/src/db/migrations/002_audit_log.sql
+238b58a6be0fef139af70bcbe55faba3bcf7c43c5ea00e82044857c9ba47f79a  /home/user/Btk-research-and-development-/src/domain/entities/AuditLog.ts
+564a61ef4f91d3128415b06884071f1a140036af03b4dff4d96f4a4e7db631eb  /home/user/Btk-research-and-development-/src/domain/services/Enforcer.ts
+8f27fa63993309b4bdebbf8992413d3f27802ac1a0ebcccf777e36b0af668345  /home/user/Btk-research-and-development-/src/domain/repositories/AuditRepository.ts
