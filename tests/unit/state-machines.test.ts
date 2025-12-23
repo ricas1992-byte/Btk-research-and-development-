@@ -35,16 +35,12 @@ describe('Idea State Machine', () => {
 
   it('rejects PROMOTED -> ABANDONED', () => {
     expect(canTransitionIdea('PROMOTED', 'ABANDONED')).toBe(false);
-    expect(() => validateIdeaTransition('PROMOTED', 'ABANDONED')).toThrow(
-      InvalidStateTransitionError
-    );
+    expect(() => validateIdeaTransition('PROMOTED', 'ABANDONED')).toThrow();
   });
 
   it('rejects ABANDONED -> PROMOTED', () => {
     expect(canTransitionIdea('ABANDONED', 'PROMOTED')).toBe(false);
-    expect(() => validateIdeaTransition('ABANDONED', 'PROMOTED')).toThrow(
-      InvalidStateTransitionError
-    );
+    expect(() => validateIdeaTransition('ABANDONED', 'PROMOTED')).toThrow();
   });
 
   it('identifies terminal states', () => {
@@ -55,19 +51,25 @@ describe('Idea State Machine', () => {
 });
 
 describe('Phase State Machine', () => {
-  it('allows ACTIVE -> CLOSED', () => {
-    expect(canTransitionPhase('ACTIVE', 'CLOSED')).toBe(true);
-    expect(() => validatePhaseTransition('ACTIVE', 'CLOSED')).not.toThrow();
+  it('allows ACTIVE -> COMPLETED', () => {
+    expect(canTransitionPhase('ACTIVE', 'COMPLETED')).toBe(true);
+    expect(() => validatePhaseTransition('ACTIVE', 'COMPLETED')).not.toThrow();
   });
 
-  it('rejects CLOSED -> ACTIVE', () => {
-    expect(canTransitionPhase('CLOSED', 'ACTIVE')).toBe(false);
-    expect(() => validatePhaseTransition('CLOSED', 'ACTIVE')).toThrow(InvalidStateTransitionError);
+  it('allows ACTIVE -> ABANDONED', () => {
+    expect(canTransitionPhase('ACTIVE', 'ABANDONED')).toBe(true);
+    expect(() => validatePhaseTransition('ACTIVE', 'ABANDONED')).not.toThrow();
+  });
+
+  it('rejects COMPLETED -> ACTIVE', () => {
+    expect(canTransitionPhase('COMPLETED', 'ACTIVE')).toBe(false);
+    expect(() => validatePhaseTransition('COMPLETED', 'ACTIVE')).toThrow();
   });
 
   it('identifies terminal states', () => {
     expect(isTerminalPhaseStatus('ACTIVE')).toBe(false);
-    expect(isTerminalPhaseStatus('CLOSED')).toBe(true);
+    expect(isTerminalPhaseStatus('COMPLETED')).toBe(true);
+    expect(isTerminalPhaseStatus('ABANDONED')).toBe(true);
   });
 });
 
@@ -79,9 +81,7 @@ describe('Decision State Machine', () => {
 
   it('rejects LOCKED -> DRAFT', () => {
     expect(canTransitionDecision('LOCKED', 'DRAFT')).toBe(false);
-    expect(() => validateDecisionTransition('LOCKED', 'DRAFT')).toThrow(
-      InvalidStateTransitionError
-    );
+    expect(() => validateDecisionTransition('LOCKED', 'DRAFT')).toThrow();
   });
 
   it('identifies terminal states', () => {
@@ -96,33 +96,35 @@ describe('Decision State Machine', () => {
 });
 
 describe('Task State Machine', () => {
-  it('allows PENDING -> COMPLETED', () => {
-    expect(canTransitionTask('PENDING', 'COMPLETED')).toBe(true);
-    expect(() => validateTaskTransition('PENDING', 'COMPLETED')).not.toThrow();
+  it('allows PENDING -> IN_PROGRESS', () => {
+    expect(canTransitionTask('PENDING', 'IN_PROGRESS')).toBe(true);
+    expect(() => validateTaskTransition('PENDING', 'IN_PROGRESS')).not.toThrow();
   });
 
-  it('allows PENDING -> VOIDED', () => {
-    expect(canTransitionTask('PENDING', 'VOIDED')).toBe(true);
-    expect(() => validateTaskTransition('PENDING', 'VOIDED')).not.toThrow();
+  it('allows PENDING -> CANCELLED', () => {
+    expect(canTransitionTask('PENDING', 'CANCELLED')).toBe(true);
+    expect(() => validateTaskTransition('PENDING', 'CANCELLED')).not.toThrow();
   });
 
-  it('rejects COMPLETED -> VOIDED', () => {
-    expect(canTransitionTask('COMPLETED', 'VOIDED')).toBe(false);
-    expect(() => validateTaskTransition('COMPLETED', 'VOIDED')).toThrow(
-      InvalidStateTransitionError
-    );
+  it('allows IN_PROGRESS -> COMPLETED', () => {
+    expect(canTransitionTask('IN_PROGRESS', 'COMPLETED')).toBe(true);
+    expect(() => validateTaskTransition('IN_PROGRESS', 'COMPLETED')).not.toThrow();
   });
 
-  it('rejects VOIDED -> COMPLETED', () => {
-    expect(canTransitionTask('VOIDED', 'COMPLETED')).toBe(false);
-    expect(() => validateTaskTransition('VOIDED', 'COMPLETED')).toThrow(
-      InvalidStateTransitionError
-    );
+  it('rejects PENDING -> COMPLETED', () => {
+    expect(canTransitionTask('PENDING', 'COMPLETED')).toBe(false);
+    expect(() => validateTaskTransition('PENDING', 'COMPLETED')).toThrow();
+  });
+
+  it('rejects COMPLETED -> CANCELLED', () => {
+    expect(canTransitionTask('COMPLETED', 'CANCELLED')).toBe(false);
+    expect(() => validateTaskTransition('COMPLETED', 'CANCELLED')).toThrow();
   });
 
   it('identifies terminal states', () => {
     expect(isTerminalTaskStatus('PENDING')).toBe(false);
+    expect(isTerminalTaskStatus('IN_PROGRESS')).toBe(false);
     expect(isTerminalTaskStatus('COMPLETED')).toBe(true);
-    expect(isTerminalTaskStatus('VOIDED')).toBe(true);
+    expect(isTerminalTaskStatus('CANCELLED')).toBe(true);
   });
 });

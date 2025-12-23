@@ -1,9 +1,27 @@
 /**
  * API client for CDW frontend.
  * Handles all HTTP requests to the backend.
+ * S4: Updated to handle enforcement errors (403) with rule codes.
  */
 
 const API_BASE = '/api';
+
+export interface EnforcementError {
+  code: 'ENFORCEMENT_VIOLATION' | 'INVALID_STATE_TRANSITION';
+  message: string;
+  rule?: string;
+}
+
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public statusCode: number,
+    public enforcementError?: EnforcementError
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
 
 async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, {
@@ -15,8 +33,37 @@ async function request<T>(method: string, path: string, body?: unknown): Promise
   });
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: { message: 'Request failed' } }));
-    throw new Error(error.error?.message || 'Request failed');
+    const errorData = await response.json().catch(() => ({ error: { message: 'Request failed' } }));
+
+    // Handle enforcement violations (403)
+    if (response.status === 403 && errorData.error?.code === 'ENFORCEMENT_VIOLATION') {
+      throw new ApiError(
+        errorData.error.message,
+        403,
+        {
+          code: 'ENFORCEMENT_VIOLATION',
+          message: errorData.error.message,
+          rule: errorData.error.rule,
+        }
+      );
+    }
+
+    // Handle state transition errors (400)
+    if (response.status === 400 && errorData.error?.code === 'INVALID_STATE_TRANSITION') {
+      throw new ApiError(
+        errorData.error.message,
+        400,
+        {
+          code: 'INVALID_STATE_TRANSITION',
+          message: errorData.error.message,
+        }
+      );
+    }
+
+    throw new ApiError(
+      errorData.error?.message || 'Request failed',
+      response.status
+    );
   }
 
   if (response.status === 204) {
@@ -47,40 +94,39 @@ export const api = {
     request('POST', `/phases/${id}/close`, { token, confirmation }),
   getPhaseSnapshots: (id: string) => request('GET', `/phases/${id}/snapshots`),
 
-  // Documents
-  getDocuments: (phaseId?: string) =>
-    request('GET', `/documents${phaseId ? `?phaseId=${phaseId}` : ''}`),
-  createDocument: (phaseId: string, title: string, content: string) =>
-    request('POST', '/documents', { phaseId, title, content }),
+  // Documents (S4: Updated to use phase_id)
+  getDocuments: (phase_id?: string) =>
+    request('GET', `/documents${phase_id ? `?phase_id=${phase_id}` : ''}`),
+  createDocument: (phase_id: string, title: string, content: string) =>
+    request('POST', '/documents', { phase_id, title, content }),
   updateDocument: (id: string, updates: { title?: string; content?: string }) =>
     request('PATCH', `/documents/${id}`, updates),
   deleteDocument: (id: string) => request('DELETE', `/documents/${id}`),
 
-  // Decisions
-  getDecisions: (phaseId?: string) =>
-    request('GET', `/decisions${phaseId ? `?phaseId=${phaseId}` : ''}`),
-  createDecision: (phaseId: string, title: string, statement: string, rationale: string) =>
-    request('POST', '/decisions', { phaseId, title, statement, rationale }),
-  updateDecision: (
-    id: string,
-    updates: { title?: string; statement?: string; rationale?: string }
-  ) => request('PATCH', `/decisions/${id}`, updates),
-  lockDecision: (id: string, confirmation: string) =>
-    request('POST', `/decisions/${id}/lock`, { confirmation }),
+  // Decisions (S4: Updated to use phase_id and content field)
+  getDecisions: (phase_id?: string) =>
+    request('GET', `/decisions${phase_id ? `?phase_id=${phase_id}` : ''}`),
+  createDecision: (phase_id: string, content: string) =>
+    request('POST', '/decisions', { phase_id, content }),
+  updateDecision: (id: string, content: string) =>
+    request('PATCH', `/decisions/${id}`, { content }),
+  lockDecision: (id: string) =>
+    request('POST', `/decisions/${id}/lock`, {}),
   deleteDecision: (id: string) => request('DELETE', `/decisions/${id}`),
 
-  // Tasks
-  getTasks: (filters?: { phaseId?: string; decisionId?: string }) => {
+  // Tasks (S4: Updated to use decision_id and IN_PROGRESS workflow)
+  getTasks: (filters?: { decision_id?: string }) => {
     const params = new URLSearchParams();
-    if (filters?.phaseId) params.set('phaseId', filters.phaseId);
-    if (filters?.decisionId) params.set('decisionId', filters.decisionId);
+    if (filters?.decision_id) params.set('decision_id', filters.decision_id);
     const query = params.toString();
     return request('GET', `/tasks${query ? `?${query}` : ''}`);
   },
-  createTask: (decisionId: string, title: string, description: string) =>
-    request('POST', '/tasks', { decisionId, title, description }),
+  createTask: (decision_id: string, title: string, description: string) =>
+    request('POST', '/tasks', { decision_id, title, description }),
+  startTask: (id: string) => request('POST', `/tasks/${id}/start`),
   completeTask: (id: string) => request('POST', `/tasks/${id}/complete`),
-  voidTask: (id: string) => request('POST', `/tasks/${id}/void`),
+  cancelTask: (id: string) => request('POST', `/tasks/${id}/cancel`),
+  pauseTask: (id: string) => request('POST', `/tasks/${id}/pause`),
 
   // Operations
   createBackup: () => request('POST', '/ops/backup'),

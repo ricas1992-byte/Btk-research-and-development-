@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import { getDatabase } from '../../persistence/database.js';
 import { Gateway } from '../../persistence/gateway.js';
-import { InvariantChecker } from '../../core/invariant-checker.js';
+import { Enforcer } from '../../domain/services/Enforcer.js';
+import { PhaseService } from '../../domain/services/PhaseService.js';
+import { PhaseRepository } from '../../domain/repositories/PhaseRepository.js';
 import { validateTitle, validateDescription } from '../../core/state-validator.js';
 import { validateIdeaTransition } from '../../core/state-machines/idea.js';
 import { IdeaStatus } from '../../types/entities.js';
@@ -38,25 +40,47 @@ ideasRouter.post('/', (req, res, next) => {
 });
 
 // POST /api/ideas/:id/promote
+// Enforces ENF-01: Single Active Phase Constraint
 ideasRouter.post('/:id/promote', (req, res, next) => {
   try {
     const { id } = req.params;
     const db = getDatabase();
     const gateway = new Gateway(db);
-    const checker = new InvariantChecker(db);
+    const enforcer = new Enforcer(db);
+    const phaseRepo = new PhaseRepository(db);
+    const phaseService = new PhaseService(phaseRepo);
 
-    // MA-01: Ensure no active phase exists
-    checker.ensureNoActivePhase();
+    // ENF-01: Ensure no active phase exists
+    enforcer.enforceNoActivePhase();
 
     const idea = gateway.getIdea(id);
     validateIdeaTransition(idea.status, 'PROMOTED');
 
-    // Update idea and create phase
+    // Update idea and create phase using S2 services
     const updatedIdea = gateway.updateIdeaStatus(id, 'PROMOTED');
-    const phase = gateway.createPhase(idea.title, idea.description, idea.id);
+    const phase = phaseService.createPhase({
+      name: idea.title,
+      description: idea.description
+    });
+
+    // Log to audit trail
+    enforcer.logEntityCreation('Phase', phase.id, {
+      source_idea_id: idea.id,
+      status: phase.status
+    });
 
     res.json({ idea: updatedIdea, phase });
-  } catch (error) {
+  } catch (error: any) {
+    if (error.message && error.message.includes('ENF-')) {
+      const ruleMatch = error.message.match(/ENF-\d+/);
+      return res.status(403).json({
+        error: {
+          code: 'ENFORCEMENT_VIOLATION',
+          message: error.message,
+          rule: ruleMatch ? ruleMatch[0] : undefined,
+        },
+      });
+    }
     next(error);
   }
 });

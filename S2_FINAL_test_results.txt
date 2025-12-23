@@ -1,0 +1,640 @@
+
+> cognitive-discipline-workspace@1.0.0 test /home/user/Btk-research-and-development-
+> vitest run
+
+
+ RUN  v1.3.1 /home/user/Btk-research-and-development-
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > createTask > should create task from locked decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > createTask > should throw error when creating from unlocked decision (ENF-03)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > createTask > should throw error when decision does not exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > createTask > should allow multiple tasks from same decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTask > should retrieve task by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTask > should return null for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should return empty array when no tasks exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should return all tasks for decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > getTasksByDecision > should only return tasks for specified decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update task title
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update task description
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > updateTask > should update both title and description
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > updateTask > should throw error for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > startTask > should start pending task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > startTask > should throw error for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > startTask > should throw error when starting non-pending task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > completeTask > should complete in-progress task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > completeTask > should throw error for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > completeTask > should throw error when completing non-in-progress task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should cancel pending task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should cancel in-progress task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should throw error for non-existent task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > cancelTask > should throw error when cancelling completed task
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > ENF-03: Task from locked decision only > should enforce locked decision requirement
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should follow complete workflow: PENDING → IN_PROGRESS → COMPLETED
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should support pause and resume
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/TaskService.test.ts > TaskService > task lifecycle > should support cancel from any non-terminal state
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/services/TaskService.test.ts  (27 tests) 650ms
+stdout | tests/integration/db.test.ts > Database Integration > should initialize database successfully
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should return same instance on subsequent calls
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should pass health check when database is accessible
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should have foreign keys enabled
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should have WAL mode enabled
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create phase table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create decision table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create task table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create document table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create parking_lot table with correct schema
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query phase records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should enforce single active phase constraint
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query decision records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should enforce foreign key constraint on decision.phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query task records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query document records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should insert and query parking_lot records
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should cascade delete decisions when phase is deleted
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should return database statistics
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/integration/db.test.ts > Database Integration > should create and use migrations tracking table
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/integration/db.test.ts  (20 tests) 702ms
+ ✓ tests/domain/entities/Task.test.ts  (24 tests) 25ms
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > create > should persist decision to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > create > should store correct hash in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should retrieve decision by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should return empty array when no decisions exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should return all decisions for phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findByPhaseId > should only return decisions for specified phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should return only locked decisions
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > findLockedByPhaseId > should return empty array when no locked decisions exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should update decision in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should recompute and store new hash
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > update > should update status
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > delete > should remove decision from database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DecisionRepository.test.ts > DecisionRepository > delete > should not throw for non-existent id
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/repositories/DecisionRepository.test.ts  (22 tests | 8 skipped) 38ms
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > create > should persist phase to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > create > should store correct hash in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should retrieve phase by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return active phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return null when no active phase exists
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findActive > should return null after phase is completed
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should return empty array when no phases exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > findAll > should return all phases
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should update phase in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should recompute and store new hash
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > update > should update status
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return false when no phases exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return true when active phase exists
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/repositories/PhaseRepository.test.ts  (22 tests | 7 skipped) 36ms
+stdout | tests/domain/repositories/PhaseRepository.test.ts > PhaseRepository > hasActivePhase > should return false after completing phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > create > should persist document to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > create > should store correct hash in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should retrieve document by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should return empty array when no documents exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should return all documents for phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > findByPhaseId > should only return documents for specified phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > update > should update document in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > update > should recompute and store new hash
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > delete > should remove document from database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/DocumentRepository.test.ts > DocumentRepository > delete > should not throw for non-existent id
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/repositories/DocumentRepository.test.ts  (18 tests | 7 skipped) 30ms
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > createDecision > should create decision with DRAFT status
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > createDecision > should allow multiple decisions for same phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecision > should retrieve decision by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecision > should return null for non-existent decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should return empty array when no decisions exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should return all decisions for phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getDecisionsByPhase > should only return decisions for specified phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getLockedDecisionsByPhase > should return only locked decisions
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > getLockedDecisionsByPhase > should return empty array when no locked decisions exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should update draft decision content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should throw error when updating locked decision (ENF-02)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > updateDecision > should throw error for non-existent decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should lock draft decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should make decision immutable after lock
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should throw error when locking already locked decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > lockDecision > should throw error for non-existent decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should delete draft decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should throw error when deleting locked decision (ENF-02)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > deleteDecision > should throw error for non-existent decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should prevent all modifications after lock
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should allow updates before lock
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DecisionService.test.ts > DecisionService > ENF-02: Decision immutability enforcement > should preserve content hash after lock
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/services/DecisionService.test.ts  (22 tests) 56ms
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > create > should persist task to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > create > should store correct hash in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should retrieve task by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should return empty array when no tasks exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should return all tasks for decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > findByDecisionId > should only return tasks for specified decision
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should update task in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should recompute and store new hash
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/TaskRepository.test.ts > TaskRepository > update > should update status
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/repositories/TaskRepository.test.ts  (17 tests | 7 skipped) 26ms
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > createDocument > should create document with all fields
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > createDocument > should allow multiple documents for same phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocument > should retrieve document by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocument > should return null for non-existent document
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should return empty array when no documents exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should return all documents for phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > getDocumentsByPhase > should only return documents for specified phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update document title only
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update document content only
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should update both title and content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should throw error for non-existent document
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > updateDocument > should handle empty updates
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should delete document
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should not throw error for non-existent document
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > deleteDocument > should remove document from phase list
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle plain text without markdown
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should preserve special characters
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle multiline content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > plain text content > should handle empty content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > document lifecycle > should support create, update, delete workflow
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/DocumentService.test.ts > DocumentService > document lifecycle > should support multiple updates
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/services/DocumentService.test.ts  (21 tests) 52ms
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should create new phase when no active phase exists
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should throw error when active phase already exists (ENF-01)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should allow creating new phase after completing previous
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > createPhase > should allow creating new phase after abandoning previous
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getPhase > should retrieve phase by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getPhase > should return null for non-existent phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return active phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return null when no active phase exists
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getActivePhase > should return null after completing phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getAllPhases > should return empty array when no phases exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > getAllPhases > should return all phases
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update phase name
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update phase description
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should update both name and description
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > updatePhase > should throw error for non-existent phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should complete active phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should throw error for non-existent phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > completePhase > should make phase terminal (cannot complete again)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should abandon active phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should throw error for non-existent phase
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > abandonPhase > should make phase terminal (cannot abandon again)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > ENF-01: Single active phase constraint > should enforce only one active phase at a time
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/PhaseService.test.ts > PhaseService > ENF-01: Single active phase constraint > should allow sequential phases after completion
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/services/PhaseService.test.ts  (23 tests) 56ms
+ ✓ tests/unit/verification.test.ts  (16 tests) 14ms
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with source_phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should create entry with null source_phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > createEntry > should allow rapid creation of multiple entries
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getEntry > should retrieve entry by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getEntry > should return null for non-existent entry
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return empty array when no entries exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return all entries
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > getAllEntries > should return entries with different source phases
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should update entry content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should preserve source_phase_id when updating
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should throw error for non-existent entry
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > updateEntry > should handle empty content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should delete entry
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should not throw error for non-existent entry
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > deleteEntry > should remove entry from all entries list
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support rapid idea capture
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support multiline content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > simple capture mechanism > should support entries with special characters
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support create, update, delete workflow
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support multiple updates
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/services/ParkingLotService.test.ts > ParkingLotService > parking lot workflow > should support bulk operations
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/services/ParkingLotService.test.ts  (22 tests) 57ms
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry to database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > create > should persist entry with source_phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should retrieve entry by id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should return null for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findById > should NOT verify hash (no hash field per spec)
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return empty array when no entries exist
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return all entries
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > findAll > should return entries with different source_phase_id values
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should update entry in database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > update > should preserve source_phase_id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should remove entry from database
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should not throw for non-existent id
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > delete > should remove entry from findAll results
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should allow rapid CRUD operations
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should support multiline content
+Applied migration: 001_initial_schema.sql
+
+stdout | tests/domain/repositories/ParkingLotRepository.test.ts > ParkingLotRepository > simple capture mechanism (no hash, no status) > should support special characters
+Applied migration: 001_initial_schema.sql
+
+ ✓ tests/domain/repositories/ParkingLotRepository.test.ts  (16 tests) 38ms
+ ✓ tests/domain/entities/Phase.test.ts  (18 tests) 14ms
+ ✓ tests/acceptance/workflows.test.ts  (8 tests) 15ms
+ ✓ tests/integration/api.test.ts  (12 tests) 123ms
+ ✓ tests/domain/entities/Decision.test.ts  (15 tests) 17ms
+ ✓ tests/domain/entities/Document.test.ts  (13 tests) 12ms
+ ✓ tests/unit/hash.test.ts  (16 tests) 13ms
+ ✓ tests/domain/entities/ParkingLot.test.ts  (14 tests) 12ms
+ ✓ tests/unit/invariants.test.ts  (7 tests) 10ms
+ ✓ tests/unit/state-machines.test.ts  (17 tests) 14ms
+ ✓ tests/integration/misuse.test.ts  (7 tests) 10ms
+ ✓ tests/unit/hash-utils.test.ts  (11 tests) 9ms
+
+ Test Files  24 passed (24)
+      Tests  379 passed | 29 skipped (408)
+   Start at  06:09:33
+   Duration  5.18s (transform 684ms, setup 307ms, collect 2.08s, tests 2.03s, environment 0ms, prepare 360ms)
+

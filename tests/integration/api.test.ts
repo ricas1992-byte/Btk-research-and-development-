@@ -67,8 +67,8 @@ describe('API Integration Tests', () => {
       expect([200, 404]).toContain(res.status);
     });
 
-    it('GET /api/phases/closed returns closed phases', async () => {
-      const res = await request(app).get('/api/phases/closed');
+    it('GET /api/phases/completed returns completed phases', async () => {
+      const res = await request(app).get('/api/phases/completed');
       expect(res.status).toBe(200);
       expect(Array.isArray(res.body)).toBe(true);
     });
@@ -80,11 +80,11 @@ describe('API Integration Tests', () => {
         .post('/api/ideas')
         .send({ title: 'Doc Test', description: '' });
       const promoteRes = await request(app).post(`/api/ideas/${ideaRes.body.id}/promote`);
-      const phaseId = promoteRes.body.phase.id;
+      const phase_id = promoteRes.body.phase.id;
 
       const res = await request(app)
         .post('/api/documents')
-        .send({ phaseId, title: 'Test Doc', content: 'Content' });
+        .send({ phase_id, title: 'Test Doc', content: 'Content' });
       expect(res.status).toBe(201);
       expect(res.body.title).toBe('Test Doc');
     });
@@ -96,13 +96,13 @@ describe('API Integration Tests', () => {
         .post('/api/ideas')
         .send({ title: 'Decision Test', description: '' });
       const promoteRes = await request(app).post(`/api/ideas/${ideaRes.body.id}/promote`);
-      const phaseId = promoteRes.body.phase.id;
+      const phase_id = promoteRes.body.phase.id;
 
       const res = await request(app)
         .post('/api/decisions')
-        .send({ phaseId, title: 'Test Decision', statement: 'Statement', rationale: 'Rationale' });
+        .send({ phase_id, content: 'Test decision content with statement and rationale' });
       expect(res.status).toBe(201);
-      expect(res.body.title).toBe('Test Decision');
+      expect(res.body.content).toBe('Test decision content with statement and rationale');
       expect(res.body.status).toBe('DRAFT');
     });
 
@@ -111,19 +111,19 @@ describe('API Integration Tests', () => {
         .post('/api/ideas')
         .send({ title: 'Lock Test', description: '' });
       const promoteRes = await request(app).post(`/api/ideas/${ideaRes.body.id}/promote`);
-      const phaseId = promoteRes.body.phase.id;
+      const phase_id = promoteRes.body.phase.id;
 
       const decRes = await request(app)
         .post('/api/decisions')
-        .send({ phaseId, title: 'Lock Decision', statement: 'S', rationale: 'R' });
+        .send({ phase_id, content: 'Lock decision content' });
       const decisionId = decRes.body.id;
 
       const res = await request(app)
         .post(`/api/decisions/${decisionId}/lock`)
-        .send({ confirmation: 'LOCK' });
+        .send({});
       expect(res.status).toBe(200);
       expect(res.body.status).toBe('LOCKED');
-      expect(res.body.contentHash).toBeTruthy();
+      expect(res.body.content_hash).toBeTruthy();
     });
   });
 
@@ -133,18 +133,18 @@ describe('API Integration Tests', () => {
         .post('/api/ideas')
         .send({ title: 'Task Test', description: '' });
       const promoteRes = await request(app).post(`/api/ideas/${ideaRes.body.id}/promote`);
-      const phaseId = promoteRes.body.phase.id;
+      const phase_id = promoteRes.body.phase.id;
 
       const decRes = await request(app)
         .post('/api/decisions')
-        .send({ phaseId, title: 'Task Decision', statement: 'S', rationale: 'R' });
-      const decisionId = decRes.body.id;
+        .send({ phase_id, content: 'Task decision content' });
+      const decision_id = decRes.body.id;
 
-      await request(app).post(`/api/decisions/${decisionId}/lock`).send({ confirmation: 'LOCK' });
+      await request(app).post(`/api/decisions/${decision_id}/lock`).send({});
 
       const res = await request(app)
         .post('/api/tasks')
-        .send({ decisionId, title: 'Test Task', description: 'Description' });
+        .send({ decision_id, title: 'Test Task', description: 'Description' });
       expect(res.status).toBe(201);
       expect(res.body.title).toBe('Test Task');
       expect(res.body.status).toBe('PENDING');
@@ -155,20 +155,24 @@ describe('API Integration Tests', () => {
         .post('/api/ideas')
         .send({ title: 'Complete Test', description: '' });
       const promoteRes = await request(app).post(`/api/ideas/${ideaRes.body.id}/promote`);
-      const phaseId = promoteRes.body.phase.id;
+      const phase_id = promoteRes.body.phase.id;
 
       const decRes = await request(app)
         .post('/api/decisions')
-        .send({ phaseId, title: 'Complete Decision', statement: 'S', rationale: 'R' });
+        .send({ phase_id, content: 'Complete decision content' });
       await request(app)
         .post(`/api/decisions/${decRes.body.id}/lock`)
-        .send({ confirmation: 'LOCK' });
+        .send({});
 
       const taskRes = await request(app)
         .post('/api/tasks')
-        .send({ decisionId: decRes.body.id, title: 'Complete Task', description: '' });
+        .send({ decision_id: decRes.body.id, title: 'Complete Task', description: '' });
       const taskId = taskRes.body.id;
 
+      // Start task first (PENDING → IN_PROGRESS)
+      await request(app).post(`/api/tasks/${taskId}/start`);
+
+      // Then complete (IN_PROGRESS → COMPLETED)
       const res = await request(app).post(`/api/tasks/${taskId}/complete`);
       expect(res.status).toBe(200);
       expect(res.body.status).toBe('COMPLETED');

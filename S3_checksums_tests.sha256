@@ -1,0 +1,5 @@
+310d990f288688df73f613ef10fa890c154043a9bd201f3739c8ef77f5c9116b  /home/user/Btk-research-and-development-/tests/unit/core/state-machines/task.test.ts
+a8b8463dd717a524508c98652e45ecc6f8ecc7615cdba24f68e6e59e2edf70f1  /home/user/Btk-research-and-development-/tests/unit/core/state-machines/phase.test.ts
+d1ef608464ac288c2310ea3e069255aa63c78c508009bd7502b781bd9c3029c3  /home/user/Btk-research-and-development-/tests/unit/core/state-machines/decision.test.ts
+58620ad1269788aec98164be5e43bd0f83c16c1f26022106ce716e9e6284431a  /home/user/Btk-research-and-development-/tests/unit/domain/services/Enforcer.test.ts
+d709b83246e3e649dd2a2631363155321731a30387caedf0f68d16070831c86a  /home/user/Btk-research-and-development-/tests/unit/domain/repositories/AuditRepository.test.ts
