@@ -80,4 +80,14 @@ export class TaskService {
     const cancelled = task.cancel();
     return this.taskRepo.update(cancelled);
   }
+
+  pauseTask(id: string): Task {
+    const task = this.taskRepo.findById(id);
+    if (!task) {
+      throw new Error(`Task ${id} not found`);
+    }
+
+    const paused = task.pause();
+    return this.taskRepo.update(paused);
+  }
 }
