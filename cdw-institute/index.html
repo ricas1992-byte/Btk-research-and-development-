@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cognitive Discipline Workspace</title>
+  <style>
+    /* Minimal styling - no external dependencies */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+
+    .cdw-app {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .app-header {
+      background: #2c3e50;
+      color: white;
+      padding: 1.5rem 2rem;
+      border-bottom: 3px solid #34495e;
+    }
+
+    .app-header h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .app-subtitle {
+      color: #ecf0f1;
+      font-size: 0.9rem;
+    }
+
+    .app-main {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .app-footer {
+      background: #34495e;
+      color: #ecf0f1;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      height: 100%;
+    }
+
+    .workspace-main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .zone {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .zone-table {
+      border: 3px solid #e74c3c;
+      background: #fff5f5;
+    }
+
+    .judgment-label {
+      background: #e74c3c;
+      color: white;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .zone-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #eee;
+    }
+
+    .zone-capacity {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .capacity-warning {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-confirm, .btn-submit-judgment {
+      background: #27ae60;
+      color: white;
+    }
+
+    .btn-cancel {
+      background: #95a5a6;
+      color: white;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+
+    .binding-warning {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .binding-badge {
+      background: #e74c3c;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: bold;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div id="cdw-root"></div>
+  <script type="module">
+    // Browser entry point
+    import { App } from './dist/ui/App.js';
+
+    // Initialize the app
+    const rootElement = document.getElementById('cdw-root');
+    const storagePath = './cdw-data'; // Local storage path
+
+    const app = new App(rootElement, storagePath);
+    app.mount();
+
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      app.unmount();
+    });
+  </script>
+</body>
+</html>
