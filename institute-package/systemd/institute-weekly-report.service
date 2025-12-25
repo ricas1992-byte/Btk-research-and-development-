@@ -1,0 +1,11 @@
+[Unit]
+Description=Institute Weekly Report Generator
+After=network.target
+
+[Service]
+Type=oneshot
+User=institute-system
+Group=institute-system
+ExecStart=/usr/bin/python3 /institute/system/bin/report_generator.py --type=weekly
+StandardOutput=journal
+StandardError=journal

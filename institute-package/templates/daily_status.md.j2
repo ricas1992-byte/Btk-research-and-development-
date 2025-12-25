@@ -1,0 +1,62 @@
+# Daily Status Report
+
+**Date:** {{ date }}
+**Generated:** {{ generated_at }}
+
+---
+
+## System Status
+
+**Mode:** {{ system_mode }}
+**Last Updated:** {{ mode_updated }}
+{% if mode_reason -%}
+**Reason:** {{ mode_reason }}
+{% endif %}
+
+---
+
+## Research Activity
+
+### Tasks Created Today
+{% if task_stats %}
+{% for status, count in task_stats.items() -%}
+- {{ status }}: {{ count }}
+{% endfor %}
+{% else %}
+No tasks created today.
+{% endif %}
+
+### Pending Tasks
+{{ pending_tasks }} task(s) in pending queue
+
+---
+
+## Escalations
+
+### Active Escalations
+{{ active_escalations }} active escalation(s)
+
+{% if escalation_by_level %}
+**By Level:**
+{% for level, count in escalation_by_level.items() -%}
+- {{ level }}: {{ count }}
+{% endfor %}
+{% endif %}
+
+---
+
+## Recent Activity
+
+{% if recent_events %}
+| Timestamp | Role | Action | Target |
+|-----------|------|--------|--------|
+{% for event in recent_events[:10] -%}
+| {{ event[0][:19] }} | {{ event[1] }} | {{ event[2] }} | {{ event[3] or '' }} |
+{% endfor %}
+{% else %}
+No recent activity.
+{% endif %}
+
+---
+
+*This report is automatically generated. No action required unless escalations are present.*

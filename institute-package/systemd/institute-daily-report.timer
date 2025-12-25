@@ -1,0 +1,10 @@
+[Unit]
+Description=Institute Daily Report Timer
+Requires=institute-daily-report.service
+
+[Timer]
+OnCalendar=*-*-* 06:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

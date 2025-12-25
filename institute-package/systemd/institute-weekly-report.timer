@@ -1,0 +1,10 @@
+[Unit]
+Description=Institute Weekly Report Timer
+Requires=institute-weekly-report.service
+
+[Timer]
+OnCalendar=Mon *-*-* 06:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

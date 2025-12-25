@@ -1,0 +1,16 @@
+[Unit]
+Description=Institute Watchdog Service
+After=network.target
+
+[Service]
+Type=simple
+User=institute-system
+Group=institute-system
+ExecStart=/usr/bin/python3 /institute/system/bin/watchdog.py
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
