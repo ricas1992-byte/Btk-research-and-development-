@@ -10,3 +10,8 @@ coverage/
 *.log
 .vscode/
 .idea/
+
+# Institute package artifacts
+__pycache__/
+*.pyc
+sandbox-institute/

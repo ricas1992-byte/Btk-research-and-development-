@@ -1,0 +1,30 @@
+ESCALATION ALERT - {{ level }}
+
+Escalation ID: {{ escalation_id }}
+Level: {{ level }}
+Code: {{ code }}
+Time: {{ timestamp }}
+
+Message:
+{{ message }}
+
+{% if level == 'L1' -%}
+This is a Level 1 escalation. Please review and acknowledge within 24 hours.
+{% elif level == 'L2' -%}
+This is a Level 2 escalation. The issue has been pending for 24+ hours.
+Please review and acknowledge within 24 hours to prevent further escalation.
+{% elif level == 'L3' -%}
+This is a Level 3 escalation. The issue has been pending for 48+ hours.
+Immediate attention required to prevent Level 4 escalation.
+{% elif level == 'L4' -%}
+This is a Level 4 escalation - CRITICAL.
+The issue has been pending for 72+ hours.
+If not acknowledged within 7 days, automatic lockdown will be triggered.
+{% endif %}
+
+Actions:
+  Acknowledge: institute --role=director escalation ack {{ escalation_id }}
+  Resolve:     institute --role=director escalation resolve {{ escalation_id }} --note "resolution details"
+
+---
+Institute Management System

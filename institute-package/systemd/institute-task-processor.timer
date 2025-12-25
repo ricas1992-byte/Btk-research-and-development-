@@ -1,0 +1,10 @@
+[Unit]
+Description=Institute Task Processor Timer
+Requires=institute-task-processor.service
+
+[Timer]
+OnCalendar=*:0/15
+Persistent=true
+
+[Install]
+WantedBy=timers.target

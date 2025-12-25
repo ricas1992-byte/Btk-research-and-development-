@@ -1,0 +1,56 @@
+# Weekly Summary Report
+
+**Period:** {{ start_date }} to {{ end_date }}
+**Generated:** {{ generated_at }}
+
+---
+
+## System Status
+
+**Current Mode:** {{ system_mode }}
+
+---
+
+## Research Activity Summary
+
+### Tasks This Week
+{% if task_stats %}
+{% for status, count in task_stats.items() -%}
+- {{ status }}: {{ count }}
+{% endfor %}
+{% else %}
+No tasks this week.
+{% endif %}
+
+### Completed Tasks
+{{ completed_this_week }} task(s) completed this week
+
+---
+
+## Escalation Summary
+
+### Resolved This Week
+{{ resolved_escalations }} escalation(s) resolved
+
+### Currently Active
+{{ active_escalations }} escalation(s) remain active
+
+---
+
+## Trends
+
+{% if completed_this_week > 0 -%}
+✓ Research activity: {{ completed_this_week }} tasks completed
+{% else -%}
+⚠ Research activity: No tasks completed this week
+{% endif %}
+
+{% if active_escalations == 0 -%}
+✓ System health: No active escalations
+{% else -%}
+⚠ System health: {{ active_escalations }} active escalation(s) require attention
+{% endif %}
+
+---
+
+*This report is automatically generated every Monday at 06:00.*
