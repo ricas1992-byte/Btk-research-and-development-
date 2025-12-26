@@ -1,0 +1,52 @@
+---
+const { title, description = "Beyond the Keys Institute — A pedagogical research institute dedicated to piano education" } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title} | Beyond the Keys Institute</title>
+  <meta name="description" content={description}>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/src/styles/global.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="site-title">
+        <h1>Beyond the Keys Institute</h1>
+        <p class="subtitle">המכון למחקר פדגוגי בחינוך לפסנתר</p>
+      </div>
+      <nav>
+        <a href="/" class={currentPath === '/' ? 'active' : ''}>בית</a>
+        <a href="/vision" class={currentPath === '/vision' ? 'active' : ''}>חזון</a>
+        <a href="/principles" class={currentPath === '/principles' ? 'active' : ''}>עקרונות</a>
+        <a href="/writings" class={currentPath === '/writings' || currentPath === '/writings/' ? 'active' : ''}>כתבים</a>
+        <a href="/about" class={currentPath === '/about' ? 'active' : ''}>אודות</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <slot />
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Beyond the Keys Institute © {new Date().getFullYear()}</p>
+      <p class="status">Institute in Formation</p>
+    </div>
+  </footer>
+</body>
+</html>
