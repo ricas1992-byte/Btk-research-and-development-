@@ -175,6 +175,7 @@ describe('Decision Entity', () => {
         created_at: '2024-01-01T00:00:00Z',
         updated_at: '2024-01-01T00:00:00Z',
         content_hash: 'test-hash',
+        locked_at: null,
       };
 
       const decision = Decision.fromDatabase(dbRow);

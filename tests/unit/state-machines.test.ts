@@ -20,7 +20,6 @@ import {
   validateTaskTransition,
   isTerminalTaskStatus,
 } from '../../src/core/state-machines/task.js';
-import { InvalidStateTransitionError } from '../../src/types/errors.js';
 
 describe('Idea State Machine', () => {
   it('allows PARKED -> PROMOTED', () => {

@@ -317,7 +317,8 @@ function DecisionsTab({ phaseId, decisions, onRefresh }: any) {
   const handleCreate = async () => {
     try {
       setError('');
-      await api.createDecision(phaseId, title, statement, rationale);
+      const content = JSON.stringify({ title, statement, rationale });
+      await api.createDecision(phaseId, content);
       setTitle('');
       setStatement('');
       setRationale('');
@@ -331,7 +332,8 @@ function DecisionsTab({ phaseId, decisions, onRefresh }: any) {
   const handleUpdate = async () => {
     try {
       setError('');
-      await api.updateDecision(editDec.id, { title, statement, rationale });
+      const content = JSON.stringify({ title, statement, rationale });
+      await api.updateDecision(editDec.id, content);
       setEditDec(null);
       onRefresh();
     } catch (err: any) {
@@ -342,7 +344,7 @@ function DecisionsTab({ phaseId, decisions, onRefresh }: any) {
   const handleLock = async () => {
     try {
       setError('');
-      await api.lockDecision(lockingId, lockConfirmation);
+      await api.lockDecision(lockingId);
       setLockingId('');
       setLockConfirmation('');
       onRefresh();
@@ -546,7 +548,7 @@ function TasksTab({ tasks, decisions, onRefresh }: any) {
   const handleVoid = async (id: string) => {
     try {
       setError('');
-      await api.voidTask(id);
+      await api.cancelTask(id);
       onRefresh();
     } catch (err: any) {
       setError(err.message);
