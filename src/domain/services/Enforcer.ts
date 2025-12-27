@@ -9,9 +9,6 @@
 
 import type Database from 'better-sqlite3';
 import { PhaseRepository } from '../repositories/PhaseRepository.js';
-import { DecisionRepository } from '../repositories/DecisionRepository.js';
-import { TaskRepository } from '../repositories/TaskRepository.js';
-import { DocumentRepository } from '../repositories/DocumentRepository.js';
 import { AuditRepository } from '../repositories/AuditRepository.js';
 import { AuditLog, type AuditAction, type AuditEntityType } from '../entities/AuditLog.js';
 import { validatePhaseTransition } from '../../core/state-machines/phase.js';
@@ -33,16 +30,10 @@ import type { PhaseStatus, DecisionStatus, TaskStatus } from '../../core/types.j
  */
 export class Enforcer {
   private phaseRepo: PhaseRepository;
-  private decisionRepo: DecisionRepository;
-  private taskRepo: TaskRepository;
-  private documentRepo: DocumentRepository;
   private auditRepo: AuditRepository;
 
   constructor(db: Database.Database) {
     this.phaseRepo = new PhaseRepository(db);
-    this.decisionRepo = new DecisionRepository(db);
-    this.taskRepo = new TaskRepository(db);
-    this.documentRepo = new DocumentRepository(db);
     this.auditRepo = new AuditRepository(db);
   }
 

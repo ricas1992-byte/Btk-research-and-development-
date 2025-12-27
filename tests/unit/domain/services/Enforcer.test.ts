@@ -12,7 +12,6 @@ import { Decision } from '../../../../src/domain/entities/Decision.js';
 import { Task } from '../../../../src/domain/entities/Task.js';
 import { PhaseRepository } from '../../../../src/domain/repositories/PhaseRepository.js';
 import { DecisionRepository } from '../../../../src/domain/repositories/DecisionRepository.js';
-import { TaskRepository } from '../../../../src/domain/repositories/TaskRepository.js';
 import { AuditRepository } from '../../../../src/domain/repositories/AuditRepository.js';
 import fs from 'fs';
 import path from 'path';
@@ -22,7 +21,6 @@ describe('Enforcer Service', () => {
   let enforcer: Enforcer;
   let phaseRepo: PhaseRepository;
   let decisionRepo: DecisionRepository;
-  let taskRepo: TaskRepository;
   let auditRepo: AuditRepository;
 
   beforeEach(() => {
@@ -49,7 +47,6 @@ describe('Enforcer Service', () => {
     enforcer = new Enforcer(db);
     phaseRepo = new PhaseRepository(db);
     decisionRepo = new DecisionRepository(db);
-    taskRepo = new TaskRepository(db);
     auditRepo = new AuditRepository(db);
   });
 
