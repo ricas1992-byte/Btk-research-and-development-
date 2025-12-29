@@ -6,6 +6,9 @@ import type {
   LoginRequest,
   LoginResponse,
   ValidateResponse,
+  Document,
+  UpdateDocumentRequest,
+  TransitionPhaseRequest,
   ErrorResponse,
 } from '@shared/types';
 
@@ -80,6 +83,25 @@ class APIClient {
 
   async validateToken(): Promise<ValidateResponse> {
     return this.request<ValidateResponse>('auth-validate');
+  }
+
+  // Document
+  async getDocument(): Promise<Document> {
+    return this.request<Document>('document-get');
+  }
+
+  async updateDocument(data: UpdateDocumentRequest): Promise<Document> {
+    return this.request<Document>('document-update', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async transitionPhase(data: TransitionPhaseRequest): Promise<Document> {
+    return this.request<Document>('document-phase', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
   }
 }
 

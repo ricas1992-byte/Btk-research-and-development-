@@ -1,0 +1,44 @@
+/* ============================================
+   Source View Styles
+   ============================================ */
+
+.source-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.source-view-header {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.source-view-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-xl);
+}
+
+.source-view-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--spacing-md);
+}
+
+.source-view-url {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0 0 var(--spacing-xl);
+}
+
+.source-view-url a {
+  color: var(--color-gold);
+}
+
+.source-view-text {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  white-space: pre-wrap;
+  color: var(--text-primary);
+}

@@ -1,0 +1,81 @@
+/* ============================================
+   Source Card Styles
+   ============================================ */
+
+.source-card {
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  position: relative;
+  background-color: var(--bg-panel);
+}
+
+.source-card:hover {
+  border-color: var(--color-medium-gray);
+}
+
+.source-card.selected {
+  border-color: var(--border-focus);
+  background-color: #FFFBF0;
+}
+
+.source-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.source-card-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+  flex: 1;
+}
+
+.source-card-type {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  background-color: var(--color-light-gray);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.source-card-url {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.source-card-delete {
+  position: absolute;
+  top: var(--spacing-xs);
+  right: var(--spacing-xs);
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background-color: var(--color-error);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: var(--font-size-base);
+  line-height: 1;
+  cursor: pointer;
+  display: none;
+}
+
+.source-card:hover .source-card-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.source-card-delete:hover {
+  background-color: #B82E2E;
+}
