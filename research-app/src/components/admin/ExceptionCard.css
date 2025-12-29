@@ -1,0 +1,71 @@
+/* ============================================
+   Exception Card Styles
+   ============================================ */
+
+.exception-card {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+}
+
+.exception-card.severity-error {
+  border-left: 4px solid var(--color-error);
+}
+
+.exception-card.severity-warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.exception-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.exception-type {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+}
+
+.exception-severity {
+  font-size: var(--font-size-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-light-gray);
+  text-transform: uppercase;
+}
+
+.exception-card.severity-error .exception-severity {
+  background-color: #FEE2E2;
+  color: var(--color-error);
+}
+
+.exception-card.severity-warning .exception-severity {
+  background-color: #FEF3C7;
+  color: var(--color-warning);
+}
+
+.exception-description {
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-base);
+}
+
+.exception-impact {
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.exception-time {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.exception-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}

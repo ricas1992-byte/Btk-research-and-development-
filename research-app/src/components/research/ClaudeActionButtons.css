@@ -1,0 +1,59 @@
+/* ============================================
+   Claude Action Buttons Styles
+   ============================================ */
+
+.claude-disabled {
+  padding: var(--spacing-md);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.claude-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+}
+
+.claude-context-form {
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-panel);
+}
+
+.claude-context-form h3 {
+  margin: 0 0 var(--spacing-md);
+  font-size: var(--font-size-base);
+}
+
+.form-field {
+  margin-bottom: var(--spacing-md);
+}
+
+.form-field label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--spacing-xs);
+}
+
+.form-field select {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+.form-field select:focus {
+  border-color: var(--border-focus);
+  outline: none;
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-lg);
+}

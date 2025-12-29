@@ -103,6 +103,81 @@ class APIClient {
       body: JSON.stringify(data),
     });
   }
+
+  // Sources
+  async getSources(): Promise<import('@shared/types').Source[]> {
+    return this.request('sources-list');
+  }
+
+  async deleteSource(id: string): Promise<void> {
+    await this.request(`sources-delete?id=${id}`, { method: 'DELETE' });
+  }
+
+  // Annotations
+  async getAnnotations(sourceId: string): Promise<import('@shared/types').Annotation[]> {
+    return this.request(`annotations-list?source_id=${sourceId}`);
+  }
+
+  async createAnnotation(data: import('@shared/types').CreateAnnotationRequest): Promise<import('@shared/types').Annotation> {
+    return this.request('annotations-create', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  // Notes
+  async getNotes(): Promise<import('@shared/types').Note[]> {
+    return this.request('notes-list');
+  }
+
+  async createNote(data: import('@shared/types').CreateNoteRequest): Promise<import('@shared/types').Note> {
+    return this.request('notes-create', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async updateNote(id: string, data: import('@shared/types').UpdateNoteRequest): Promise<import('@shared/types').Note> {
+    return this.request(`notes-update?id=${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async deleteNote(id: string): Promise<void> {
+    await this.request(`notes-delete?id=${id}`, { method: 'DELETE' });
+  }
+
+  // Claude
+  async invokeClaude(data: import('@shared/types').InvokeClaudeRequest): Promise<import('@shared/types').InvokeClaudeResponse> {
+    return this.request('claude-invoke', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async updateClaudeDisposition(data: import('@shared/types').UpdateDispositionRequest): Promise<void> {
+    await this.request('claude-disposition', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
+  // Admin
+  async getExceptions(): Promise<import('@shared/types').AdminException[]> {
+    return this.request('admin-exceptions');
+  }
+
+  async resolveException(data: import('@shared/types').ResolveExceptionRequest): Promise<void> {
+    await this.request('admin-resolve', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async getSystemStatus(): Promise<import('@shared/types').SystemStatus[]> {
+    return this.request('admin-status');
+  }
 }
 
 export const api = new APIClient();
