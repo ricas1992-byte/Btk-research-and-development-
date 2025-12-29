@@ -1,0 +1,12 @@
+/* ============================================
+   Error Message Styles
+   ============================================ */
+
+.error-message {
+  padding: var(--spacing-md);
+  background-color: #FEE2E2;
+  border: 1px solid var(--border-error);
+  border-radius: var(--radius-md);
+  color: var(--text-error);
+  font-size: var(--font-size-sm);
+}
