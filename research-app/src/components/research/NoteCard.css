@@ -1,0 +1,102 @@
+/* ============================================
+   Note Card Styles
+   ============================================ */
+
+.note-card {
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-panel);
+}
+
+.note-card.locked {
+  background-color: #F9FAFB;
+  opacity: 0.8;
+}
+
+.note-card-content {
+  margin: 0 0 var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  white-space: pre-wrap;
+}
+
+.note-card-source {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.note-card-locked {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  display: block;
+  margin-top: var(--spacing-sm);
+}
+
+.note-card-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  resize: vertical;
+}
+
+.note-card-textarea:focus {
+  border-color: var(--border-focus);
+  outline: none;
+}
+
+.note-card-char-count {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  text-align: right;
+  margin-top: var(--spacing-xs);
+}
+
+.note-card-char-count .over-limit {
+  color: var(--color-error);
+  font-weight: var(--font-weight-semibold);
+}
+
+.note-card-error {
+  font-size: var(--font-size-xs);
+  color: var(--text-error);
+  margin-top: var(--spacing-xs);
+}
+
+.note-card-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.note-card-actions button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-panel);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.note-card-actions button:hover:not(:disabled) {
+  background-color: var(--color-light-gray);
+}
+
+.note-card-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.note-card-actions button.delete {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.note-card-actions button.delete:hover {
+  background-color: #FEE2E2;
+}

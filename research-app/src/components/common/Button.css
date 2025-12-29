@@ -1,0 +1,61 @@
+/* ============================================
+   Button Styles
+   ============================================ */
+
+.btn {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  border: none;
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Primary variant */
+.btn-primary {
+  background-color: var(--bg-button-primary);
+  color: var(--text-on-gold);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #C4A030;
+}
+
+.btn-primary:active:not(:disabled) {
+  background-color: #B49028;
+}
+
+/* Secondary variant */
+.btn-secondary {
+  background-color: var(--bg-button-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #D0D0D0;
+}
+
+.btn-secondary:active:not(:disabled) {
+  background-color: #C0C0C0;
+}
+
+/* Full width */
+.btn-full-width {
+  width: 100%;
+}

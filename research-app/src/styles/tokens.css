@@ -1,0 +1,90 @@
+/* ============================================
+   Design Tokens
+   ============================================ */
+
+:root {
+  /* Colors */
+  --color-gold: #D4AF37;
+  --color-warm-offwhite: #F5F3ED;
+  --color-charcoal: #2C2C2C;
+  --color-medium-gray: #666666;
+  --color-light-gray: #E0E0E0;
+  --color-white: #FFFFFF;
+  --color-error: #C93636;
+  --color-warning: #D97706;
+  --color-success: #059669;
+
+  /* Background */
+  --bg-primary: var(--color-warm-offwhite);
+  --bg-panel: var(--color-white);
+  --bg-input: var(--color-white);
+  --bg-button-primary: var(--color-gold);
+  --bg-button-secondary: var(--color-light-gray);
+
+  /* Text */
+  --text-primary: var(--color-charcoal);
+  --text-secondary: var(--color-medium-gray);
+  --text-on-gold: var(--color-charcoal);
+  --text-error: var(--color-error);
+
+  /* Borders */
+  --border-color: var(--color-light-gray);
+  --border-focus: var(--color-gold);
+  --border-error: var(--color-error);
+
+  /* Typography */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  --font-family-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono',
+    'Courier New', monospace;
+
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 3rem; /* 48px */
+
+  /* Border radius */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Layout */
+  --header-height: 4rem; /* 64px */
+  --panel-width: 16rem; /* 256px */
+  --panel-width-collapsed: 2.5rem; /* 40px */
+
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-modal: 2000;
+  --z-tooltip: 3000;
+
+  /* Transitions - NONE per spec (no animations) */
+  /* All transitions should be instant */
+}

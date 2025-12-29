@@ -1,0 +1,81 @@
+/* ============================================
+   Notes Panel Styles
+   ============================================ */
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.notes-empty {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+}
+
+.note-add-form {
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-panel);
+}
+
+.note-add-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  resize: vertical;
+}
+
+.note-add-textarea:focus {
+  border-color: var(--border-focus);
+  outline: none;
+}
+
+.note-add-char-count {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  text-align: right;
+  margin-top: var(--spacing-xs);
+}
+
+.note-add-char-count .over-limit {
+  color: var(--color-error);
+  font-weight: var(--font-weight-semibold);
+}
+
+.note-add-error {
+  font-size: var(--font-size-xs);
+  color: var(--text-error);
+  margin-top: var(--spacing-xs);
+}
+
+.note-add-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+.note-add-actions button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-panel);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.note-add-actions button:hover:not(:disabled) {
+  background-color: var(--color-light-gray);
+}
+
+.note-add-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

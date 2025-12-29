@@ -1,0 +1,46 @@
+/* ============================================
+   AI Output Area Styles
+   ============================================ */
+
+.ai-output-area {
+  border-top: 1px solid var(--border-color);
+  background-color: #F9FAFB;
+  max-height: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ai-output-header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ai-output-status {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+}
+
+.ai-output-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.ai-output-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+}
+
+.ai-output-content pre {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  white-space: pre-wrap;
+  color: var(--text-primary);
+}
