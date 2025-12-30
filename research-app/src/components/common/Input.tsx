@@ -32,10 +32,6 @@ export function Input({
   autoComplete,
   autoFocus = false,
 }: InputProps) {
-  // Permissive RFC-safe email pattern that accepts most valid email formats
-  // This overrides the overly restrictive browser default for type="email"
-  const emailPattern = type === 'email' ? '.+@.+\\..+' : undefined;
-
   return (
     <div className="input-wrapper">
       {label && (
@@ -55,7 +51,6 @@ export function Input({
         disabled={disabled}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
-        pattern={emailPattern}
         className={`input ${error ? 'input-error' : ''}`}
         aria-invalid={!!error}
         aria-describedby={error ? `${name}-error` : undefined}
