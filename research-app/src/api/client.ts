@@ -1,43 +1,26 @@
 // ============================================
-// API Client
+// API Client for BTK Institute v5.2
+// NO AI INTEGRATION - Uses HTTP-only cookies for auth
 // ============================================
 
 import type {
   LoginRequest,
-  LoginResponse,
-  ValidateResponse,
   Document,
   UpdateDocumentRequest,
-  TransitionPhaseRequest,
-  ErrorResponse,
+  Source,
+  Annotation,
+  CreateAnnotationRequest,
+  Note,
+  CreateNoteRequest,
+  UpdateNoteRequest,
+  AdminException,
+  SystemStatus,
+  ApiResponse,
 } from '@shared/types';
 
-const API_BASE =
-  import.meta.env.MODE === 'development'
-    ? 'http://localhost:8888/.netlify/functions'
-    : '/.netlify/functions';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 class APIClient {
-  private token: string | null = null;
-
-  constructor() {
-    // Load token from localStorage
-    this.token = localStorage.getItem('btk_token');
-  }
-
-  setToken(token: string | null) {
-    this.token = token;
-    if (token) {
-      localStorage.setItem('btk_token', token);
-    } else {
-      localStorage.removeItem('btk_token');
-    }
-  }
-
-  getToken(): string | null {
-    return this.token;
-  }
-
   private async request<T>(
     endpoint: string,
     options: RequestInit = {}
@@ -47,136 +30,251 @@ class APIClient {
       ...((options.headers as Record<string, string>) || {}),
     };
 
-    if (this.token) {
-      headers.Authorization = `Bearer ${this.token}`;
-    }
-
     const response = await fetch(`${API_BASE}/${endpoint}`, {
       ...options,
       headers,
+      credentials: 'include', // CRITICAL: Send cookies with requests
     });
 
-    const data = await response.json();
+    const data = await response.json() as ApiResponse<T>;
 
-    if (!response.ok) {
-      const error = data as ErrorResponse;
-      throw new Error(error.error || 'An unexpected error occurred.');
+    if (!response.ok || !data.success) {
+      const errorMessage = data.error || 'An unexpected error occurred.';
+      throw new Error(errorMessage);
     }
 
-    return data as T;
+    return data.data as T;
   }
 
+  // ==========================================
   // Auth
-  async login(credentials: LoginRequest): Promise<LoginResponse> {
-    const response = await this.request<LoginResponse>('auth-login', {
+  // ==========================================
+
+  async login(credentials: LoginRequest): Promise<{ user: { id: string; email: string }; expiresAt: string }> {
+    return this.request('auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials),
     });
-    this.setToken(response.token);
-    return response;
   }
 
   async logout(): Promise<void> {
-    await this.request('auth-logout', { method: 'POST' });
-    this.setToken(null);
+    await this.request('auth/logout', { method: 'POST' });
   }
 
-  async validateToken(): Promise<ValidateResponse> {
-    return this.request<ValidateResponse>('auth-validate');
+  async getMe(): Promise<{ user: { id: string; email: string } }> {
+    return this.request('auth/me');
   }
 
+  // ==========================================
   // Document
+  // ==========================================
+
   async getDocument(): Promise<Document> {
-    return this.request<Document>('document-get');
+    const data = await this.request<any>('document');
+    return {
+      id: data.id,
+      user_id: '',
+      title: data.title,
+      content: data.content,
+      writing_phase: data.writingPhase,
+      created_at: data.createdAt,
+      updated_at: data.updatedAt,
+    };
   }
 
-  async updateDocument(data: UpdateDocumentRequest): Promise<Document> {
-    return this.request<Document>('document-update', {
+  async updateDocument(update: UpdateDocumentRequest): Promise<Document> {
+    const data = await this.request<any>('document', {
       method: 'PUT',
-      body: JSON.stringify(data),
+      body: JSON.stringify(update),
     });
+    return {
+      id: data.id,
+      user_id: '',
+      title: data.title,
+      content: data.content,
+      writing_phase: data.writingPhase,
+      created_at: data.createdAt,
+      updated_at: data.updatedAt,
+    };
   }
 
-  async transitionPhase(data: TransitionPhaseRequest): Promise<Document> {
-    return this.request<Document>('document-phase', {
-      method: 'PUT',
-      body: JSON.stringify(data),
+  async transitionPhase(): Promise<Document> {
+    const data = await this.request<any>('writing-phase/ready-to-write', {
+      method: 'POST',
     });
+    // Refresh document after phase transition
+    return this.getDocument();
   }
 
+  // ==========================================
   // Sources
-  async getSources(): Promise<import('@shared/types').Source[]> {
-    return this.request('sources-list');
+  // ==========================================
+
+  async getSources(): Promise<Source[]> {
+    const sources = await this.request<any[]>('sources');
+    return sources.map(s => ({
+      id: s.id,
+      user_id: '',
+      document_id: '',
+      title: s.title,
+      content: '',
+      source_type: s.sourceType,
+      source_url: s.sourceUrl,
+      created_at: s.createdAt,
+    }));
   }
 
-  async deleteSource(id: string): Promise<void> {
-    await this.request(`sources-delete?id=${id}`, { method: 'DELETE' });
+  async getSource(id: string): Promise<Source> {
+    const s = await this.request<any>(`sources/${id}`);
+    return {
+      id: s.id,
+      user_id: '',
+      document_id: '',
+      title: s.title,
+      content: s.content,
+      source_type: s.sourceType,
+      source_url: s.sourceUrl,
+      created_at: s.createdAt,
+    };
   }
 
+  // ==========================================
   // Annotations
-  async getAnnotations(sourceId: string): Promise<import('@shared/types').Annotation[]> {
-    return this.request(`annotations-list?source_id=${sourceId}`);
+  // ==========================================
+
+  async getAnnotations(sourceId: string): Promise<Annotation[]> {
+    const annotations = await this.request<any[]>(`sources/${sourceId}/annotations`);
+    return annotations.map(a => ({
+      id: a.id,
+      source_id: a.sourceId,
+      user_id: '',
+      text_selection: a.textSelection,
+      start_offset: a.startOffset,
+      end_offset: a.endOffset,
+      note_content: a.noteContent,
+      highlight_color: a.highlightColor,
+      created_at: a.createdAt,
+      synced_to_notes: a.syncedToNotes ? 1 : 0,
+    }));
   }
 
-  async createAnnotation(data: import('@shared/types').CreateAnnotationRequest): Promise<import('@shared/types').Annotation> {
-    return this.request('annotations-create', {
+  async createAnnotation(sourceId: string, data: CreateAnnotationRequest): Promise<Annotation> {
+    const a = await this.request<any>(`sources/${sourceId}/annotations`, {
       method: 'POST',
       body: JSON.stringify(data),
     });
+    return {
+      id: a.id,
+      source_id: a.sourceId,
+      user_id: '',
+      text_selection: a.textSelection,
+      start_offset: a.startOffset,
+      end_offset: a.endOffset,
+      note_content: a.noteContent,
+      highlight_color: a.highlightColor,
+      created_at: a.createdAt,
+      synced_to_notes: a.syncedToNotes ? 1 : 0,
+    };
   }
 
+  async deleteAnnotation(id: string): Promise<void> {
+    await this.request(`annotations/${id}`, { method: 'DELETE' });
+  }
+
+  // ==========================================
   // Notes
-  async getNotes(): Promise<import('@shared/types').Note[]> {
-    return this.request('notes-list');
+  // ==========================================
+
+  async getNotes(): Promise<Note[]> {
+    const notes = await this.request<any[]>('notes');
+    return notes.map(n => ({
+      id: n.id,
+      user_id: '',
+      document_id: '',
+      content: n.content,
+      source_id: n.sourceId,
+      annotation_id: n.annotationId,
+      created_at: n.createdAt,
+      updated_at: n.updatedAt,
+      is_locked: n.isLocked ? 1 : 0,
+    }));
   }
 
-  async createNote(data: import('@shared/types').CreateNoteRequest): Promise<import('@shared/types').Note> {
-    return this.request('notes-create', {
+  async createNote(data: CreateNoteRequest): Promise<Note> {
+    const n = await this.request<any>('notes', {
       method: 'POST',
       body: JSON.stringify(data),
     });
+    return {
+      id: n.id,
+      user_id: '',
+      document_id: '',
+      content: n.content,
+      source_id: n.sourceId,
+      annotation_id: n.annotationId,
+      created_at: n.createdAt,
+      updated_at: n.updatedAt,
+      is_locked: n.isLocked ? 1 : 0,
+    };
   }
 
-  async updateNote(id: string, data: import('@shared/types').UpdateNoteRequest): Promise<import('@shared/types').Note> {
-    return this.request(`notes-update?id=${id}`, {
+  async updateNote(id: string, data: UpdateNoteRequest): Promise<Note> {
+    const n = await this.request<any>(`notes/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     });
+    return {
+      id: n.id,
+      user_id: '',
+      document_id: '',
+      content: n.content,
+      source_id: n.sourceId,
+      annotation_id: n.annotationId,
+      created_at: n.createdAt,
+      updated_at: n.updatedAt,
+      is_locked: n.isLocked ? 1 : 0,
+    };
   }
 
   async deleteNote(id: string): Promise<void> {
-    await this.request(`notes-delete?id=${id}`, { method: 'DELETE' });
+    await this.request(`notes/${id}`, { method: 'DELETE' });
   }
 
-  // Claude
-  async invokeClaude(data: import('@shared/types').InvokeClaudeRequest): Promise<import('@shared/types').InvokeClaudeResponse> {
-    return this.request('claude-invoke', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
-  }
-
-  async updateClaudeDisposition(data: import('@shared/types').UpdateDispositionRequest): Promise<void> {
-    await this.request('claude-disposition', {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
-  }
-
+  // ==========================================
   // Admin
-  async getExceptions(): Promise<import('@shared/types').AdminException[]> {
-    return this.request('admin-exceptions');
+  // ==========================================
+
+  async getExceptions(): Promise<AdminException[]> {
+    const exceptions = await this.request<any[]>('admin/exceptions');
+    return exceptions.map(e => ({
+      id: e.id,
+      user_id: '',
+      exception_type: e.exceptionType,
+      severity: e.severity,
+      description: e.description,
+      impact: e.impact,
+      detected_at: e.detectedAt,
+      status: e.status,
+      resolution_action: e.resolutionAction,
+      resolved_at: e.resolvedAt,
+    }));
   }
 
-  async resolveException(data: import('@shared/types').ResolveExceptionRequest): Promise<void> {
-    await this.request('admin-resolve', {
-      method: 'PUT',
-      body: JSON.stringify(data),
+  async dismissException(id: string): Promise<void> {
+    await this.request(`admin/exceptions/${id}/dismiss`, {
+      method: 'POST',
     });
   }
 
-  async getSystemStatus(): Promise<import('@shared/types').SystemStatus[]> {
-    return this.request('admin-status');
+  async getSystemStatus(): Promise<SystemStatus[]> {
+    const statuses = await this.request<any[]>('admin/status');
+    return statuses.map(s => ({
+      id: '',
+      function_code: s.functionCode,
+      status: s.status,
+      last_check_at: s.lastCheckAt,
+      message: s.message,
+    }));
   }
 }
 

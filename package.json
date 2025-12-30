@@ -8,10 +8,10 @@
     "pnpm": ">=8.15.4"
   },
   "scripts": {
-    "dev": "concurrently \"pnpm:dev:api\" \"pnpm:dev:ui\"",
-    "dev:api": "tsx watch src/main.ts",
-    "dev:ui": "vite",
-    "build": "tsc && vite build",
+    "dev": "concurrently \"npm:server\" \"npm:client\"",
+    "server": "tsx watch server/index.ts",
+    "client": "vite",
+    "build": "tsc -p server/tsconfig.json && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "prettier --check .",
@@ -21,10 +21,18 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/react-router-dom": "^5.3.3",
+    "bcryptjs": "^3.0.3",
     "better-sqlite3": "^11.0.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "express": "4.18.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-router-dom": "^7.11.0",
     "uuid": "9.0.1"
   },
   "devDependencies": {
