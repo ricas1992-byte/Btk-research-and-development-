@@ -6,9 +6,9 @@
 import { createClient } from '@libsql/client';
 import bcrypt from 'bcryptjs';
 
-// Canonical user credentials (per FULL EXECUTION BRIEF)
+// Canonical user credentials (per Canonical Spec v5.2)
 const CANONICAL_USERNAME = 'yotam_ricas';
-const CANONICAL_PASSWORD = 'Btk!Yotam_Institute#2025';
+const CANONICAL_PASSWORD = 'btk1234';
 const USER_ID = 'user-001';
 const DOCUMENT_ID = 'doc-001';
 
@@ -130,7 +130,7 @@ The evolution of piano pedagogy reflects broader shifts in educational philosoph
 
     console.log('\n✅ Database seeding completed successfully');
     console.log(`\nCanonical user: ${CANONICAL_USERNAME}`);
-    console.log('Password: [REDACTED - see FULL EXECUTION BRIEF]');
+    console.log('Password: [REDACTED - see Canonical Spec]');
 
   } catch (error) {
     console.error('❌ Error seeding database:', error);
