@@ -22,22 +22,22 @@ export const handler: Handler = async (event) => {
     }
 
     const body: LoginRequest = JSON.parse(event.body || '{}');
-    const { email, password } = body;
+    const { username, password } = body;
 
     // Validate input
-    if (!email || !password) {
+    if (!username || !password) {
       throw ERRORS.INVALID_CREDENTIALS;
     }
 
-    // Only accept the authorized email
-    if (email !== 'yotam_ricas@btk.institute') {
+    // Only accept the authorized username
+    if (username !== 'yotam_ricas') {
       throw ERRORS.INVALID_CREDENTIALS;
     }
 
     // Find user
     const result = await db.execute({
-      sql: 'SELECT * FROM user WHERE email = ?',
-      args: [email],
+      sql: 'SELECT * FROM user WHERE username = ?',
+      args: [username],
     });
 
     if (result.rows.length === 0) {

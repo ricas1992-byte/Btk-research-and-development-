@@ -12,7 +12,7 @@ import '@/styles/screens/login.css';
 
 export function LoginScreen() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ export function LoginScreen() {
     setLoading(true);
 
     try {
-      await api.login({ email, password });
+      await api.login({ username, password });
       navigate('/');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -46,12 +46,13 @@ export function LoginScreen() {
         <form onSubmit={handleSubmit} className="login-form" noValidate>
           <Input
             type="text"
-            name="email"
-            label="Email"
-            value={email}
-            onChange={setEmail}
-            autoComplete="email"
+            name="username"
+            label="Username"
+            value={username}
+            onChange={setUsername}
+            autoComplete="username"
             autoFocus
+            required
           />
 
           <Input

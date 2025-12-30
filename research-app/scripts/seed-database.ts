@@ -7,7 +7,7 @@ import { createClient } from '@libsql/client';
 import bcrypt from 'bcryptjs';
 
 // Canonical user credentials (per FULL EXECUTION BRIEF)
-const CANONICAL_EMAIL = 'yotam_ricas@btk.institute';
+const CANONICAL_USERNAME = 'yotam_ricas';
 const CANONICAL_PASSWORD = 'Btk!Yotam_Institute#2025';
 const USER_ID = 'user-001';
 const DOCUMENT_ID = 'doc-001';
@@ -36,8 +36,8 @@ async function seedDatabase() {
 
       // Update existing user
       await db.execute({
-        sql: 'UPDATE user SET email = ?, password_hash = ? WHERE id = ?',
-        args: [CANONICAL_EMAIL, passwordHash, USER_ID],
+        sql: 'UPDATE user SET username = ?, password_hash = ? WHERE id = ?',
+        args: [CANONICAL_USERNAME, passwordHash, USER_ID],
       });
 
       console.log('✓ User updated successfully');
@@ -49,9 +49,9 @@ async function seedDatabase() {
 
       // Insert canonical user
       await db.execute({
-        sql: `INSERT INTO user (id, email, password_hash, created_at)
+        sql: `INSERT INTO user (id, username, password_hash, created_at)
               VALUES (?, ?, ?, datetime('now'))`,
-        args: [USER_ID, CANONICAL_EMAIL, passwordHash],
+        args: [USER_ID, CANONICAL_USERNAME, passwordHash],
       });
 
       console.log('✓ User created successfully');
@@ -129,7 +129,7 @@ The evolution of piano pedagogy reflects broader shifts in educational philosoph
     }
 
     console.log('\n✅ Database seeding completed successfully');
-    console.log(`\nCanonical user: ${CANONICAL_EMAIL}`);
+    console.log(`\nCanonical user: ${CANONICAL_USERNAME}`);
     console.log('Password: [REDACTED - see FULL EXECUTION BRIEF]');
 
   } catch (error) {

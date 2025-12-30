@@ -93,7 +93,7 @@ class APIClient {
     }
   }
 
-  async getMe(): Promise<{ user: { id: string; email: string } }> {
+  async getMe(): Promise<{ user: { id: string; username: string } }> {
     return this.request('auth/me');
   }
 

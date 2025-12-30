@@ -9,7 +9,7 @@
 
 export interface User {
   id: string;
-  email: string;
+  username: string;
   password_hash: string;
   created_at: string;
   last_login_at: string | null;
@@ -100,7 +100,7 @@ export interface SystemStatus {
 
 // Auth
 export interface LoginRequest {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -112,13 +112,13 @@ export interface LoginResponse {
 export interface MeResponse {
   user: {
     id: string;
-    email: string;
+    username: string;
   };
 }
 
 export interface TokenPayload {
   user_id: string;
-  email: string;
+  username: string;
   issued_at: number;
   expires_at: number;
   session_id: string;
@@ -177,7 +177,7 @@ export interface ErrorResponse {
 
 export interface AuthState {
   userId: string | null;
-  userEmail: string | null;
+  userName: string | null;
   isAuthenticated: boolean;
 }
 

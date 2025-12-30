@@ -8,7 +8,7 @@
 -- --------------------------------------------
 CREATE TABLE user (
   id TEXT PRIMARY KEY,
-  email TEXT UNIQUE NOT NULL,
+  username TEXT UNIQUE NOT NULL,
   password_hash TEXT NOT NULL,
   created_at TEXT NOT NULL DEFAULT (datetime('now')),
   last_login_at TEXT
