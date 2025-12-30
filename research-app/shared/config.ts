@@ -22,6 +22,6 @@ export const CONFIG = {
   // Network retry
   NETWORK_RETRY_INTERVAL_MS: 10000, // 10 seconds
 
-  // Single user email (canonical - per FULL EXECUTION BRIEF)
-  DEFAULT_USER_EMAIL: 'yotam_ricas@btk.institute',
+  // Single user username (canonical - per FULL EXECUTION BRIEF)
+  DEFAULT_USERNAME: 'yotam_ricas',
 } as const;

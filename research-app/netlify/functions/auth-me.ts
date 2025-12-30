@@ -23,7 +23,7 @@ export const handler: Handler = async (event) => {
       const response: MeResponse = {
         user: {
           id: user.user_id,
-          email: user.email,
+          username: user.username,
         },
       };
 

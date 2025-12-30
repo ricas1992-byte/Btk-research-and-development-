@@ -11,7 +11,7 @@ import { CONFIG } from '../../../shared/config';
 export function generateToken(user: User): string {
   const payload: TokenPayload = {
     user_id: user.id,
-    email: user.email,
+    username: user.username,
     issued_at: Date.now(),
     expires_at: Date.now() + CONFIG.SESSION_EXPIRY_DAYS * 24 * 60 * 60 * 1000,
     session_id: crypto.randomUUID(),

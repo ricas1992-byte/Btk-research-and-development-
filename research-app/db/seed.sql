@@ -5,11 +5,11 @@
 
 -- Create single user (password hash generated at deployment time)
 -- NOTE: Replace {{PASSWORD_HASH_PLACEHOLDER}} with actual bcrypt hash before running
--- Canonical user: yotam_ricas@btk.institute
-INSERT INTO user (id, email, password_hash, created_at)
+-- Canonical user: yotam_ricas
+INSERT INTO user (id, username, password_hash, created_at)
 VALUES (
   'user-001',
-  'yotam_ricas@btk.institute',
+  'yotam_ricas',
   '{{PASSWORD_HASH_PLACEHOLDER}}',
   datetime('now')
 );
