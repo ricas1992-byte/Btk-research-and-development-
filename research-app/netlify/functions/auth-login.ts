@@ -29,6 +29,11 @@ export const handler: Handler = async (event) => {
       throw ERRORS.INVALID_CREDENTIALS;
     }
 
+    // Only accept the authorized email
+    if (email !== 'yotam_ricas@btk.institute') {
+      throw ERRORS.INVALID_CREDENTIALS;
+    }
+
     // Find user
     const result = await db.execute({
       sql: 'SELECT * FROM user WHERE email = ?',

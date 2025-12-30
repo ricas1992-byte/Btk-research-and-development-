@@ -45,7 +45,7 @@ export function LoginScreen() {
 
         <form onSubmit={handleSubmit} className="login-form">
           <Input
-            type="email"
+            type="text"
             name="email"
             label="Email"
             value={email}
