@@ -14,18 +14,12 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token = api.getToken();
-
-      if (!token) {
-        setIsAuthenticated(false);
-        return;
-      }
-
       try {
-        await api.validateToken();
+        // Check if we have a valid session cookie by calling /auth/me
+        await api.getMe();
         setIsAuthenticated(true);
       } catch {
-        api.setToken(null);
+        // No valid session - redirect to login
         setIsAuthenticated(false);
       }
     };
