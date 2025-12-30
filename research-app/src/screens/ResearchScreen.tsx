@@ -1,5 +1,5 @@
 // ============================================
-// Research Screen - Complete Implementation
+// Research Screen - NO AI INTEGRATION (v5.2)
 // ============================================
 
 import React, { useEffect, useState } from 'react';
@@ -14,14 +14,11 @@ import { SourcesPanel } from '@/components/layout/SourcesPanel';
 import { NotesPanel } from '@/components/layout/NotesPanel';
 import { DraftView } from '@/components/research/DraftView';
 import { SourceView } from '@/components/research/SourceView';
-import { AIOutputArea } from '@/components/research/AIOutputArea';
-import { ClaudeActionButtons } from '@/components/research/ClaudeActionButtons';
+import { AIPlaceholderButtons } from '@/components/research/AIPlaceholderButtons';
 import type {
   Document,
   Source,
   Note,
-  ClaudeActionType,
-  DraftContext,
 } from '@shared/types';
 import '@/styles/screens/research.css';
 
@@ -47,15 +44,6 @@ export function ResearchScreen() {
   const [notesPanelCollapsed, setNotesPanelCollapsed] = useState(
     storage.getNotesPanelCollapsed()
   );
-
-  // Claude state
-  const [claudeOutput, setClaudeOutput] = useState<{
-    content: string;
-    statusTag: string;
-    outputId: string;
-  } | null>(null);
-  const [claudeLoading, setClaudeLoading] = useState(false);
-  const [claudeEnabled] = useState(true); // Feature flag
 
   // Loading & errors
   const [loading, setLoading] = useState(true);
@@ -162,73 +150,19 @@ export function ResearchScreen() {
     }
   };
 
-  const handleClaudeAction = async (
-    actionType: ClaudeActionType,
-    context?: DraftContext
-  ) => {
-    if (actionType === 'READY') {
-      try {
-        const updated = await api.transitionPhase({ to_phase: 'DRAFTING' });
-        setDocument(updated);
-        const notesData = await api.getNotes();
-        setNotes(notesData);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to transition phase');
-      }
-      return;
-    }
-
-    setClaudeLoading(true);
-    setError(null);
+  const handleReadyToWrite = async () => {
+    if (!document) return;
 
     try {
-      const input =
-        actionType === 'REWRITE' || actionType === 'CRITIQUE'
-          ? draftContent
-          : undefined;
+      const updated = await api.transitionPhase();
+      setDocument(updated);
 
-      const response = await api.invokeClaude({
-        action_type: actionType,
-        input,
-        context,
-      });
-
-      setClaudeOutput({
-        content: response.output_content,
-        statusTag: response.status_tag,
-        outputId: response.output_id,
-      });
+      // Reload notes to get locked status
+      const notesData = await api.getNotes();
+      setNotes(notesData);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Claude request failed');
-    } finally {
-      setClaudeLoading(false);
+      setError(err instanceof Error ? err.message : 'Failed to transition phase');
     }
-  };
-
-  const handleCopyToEditor = async () => {
-    if (!claudeOutput) return;
-
-    setDraftContent((prev) =>
-      prev ? `${prev}\n\n${claudeOutput.content}` : claudeOutput.content
-    );
-
-    await api.updateClaudeDisposition({
-      output_id: claudeOutput.outputId,
-      disposition: 'COPIED',
-    });
-
-    setClaudeOutput(null);
-  };
-
-  const handleDiscardOutput = async () => {
-    if (!claudeOutput) return;
-
-    await api.updateClaudeDisposition({
-      output_id: claudeOutput.outputId,
-      disposition: 'DISCARDED',
-    });
-
-    setClaudeOutput(null);
   };
 
   if (loading) {
@@ -269,26 +203,13 @@ export function ResearchScreen() {
           </div>
 
           {currentView === 'draft' && (
-            <>
-              <ClaudeActionButtons
-                claudeEnabled={claudeEnabled}
-                writingPhase={document.writing_phase}
-                notesCount={notes.filter((n) => n.is_locked === 0).length}
-                hasSummary={false}
-                draftContent={draftContent}
-                onAction={handleClaudeAction}
-                loading={claudeLoading}
+            <div className="research-ai-section">
+              <AIPlaceholderButtons
+                document={document}
+                notes={notes}
+                onReadyToWrite={handleReadyToWrite}
               />
-
-              {claudeOutput && (
-                <AIOutputArea
-                  output={claudeOutput.content}
-                  statusTag={claudeOutput.statusTag}
-                  onCopy={handleCopyToEditor}
-                  onDiscard={handleDiscardOutput}
-                />
-              )}
-            </>
+            </div>
           )}
         </div>
 

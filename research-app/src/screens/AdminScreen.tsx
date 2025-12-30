@@ -1,13 +1,11 @@
 // ============================================
-// Administration Screen
+// Administration Screen - TEXT ONLY (v5.2)
+// NO cards, badges, icons per plan
 // ============================================
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '@/api/client';
-import { Button } from '@/components/common/Button';
-import { ExceptionCard } from '@/components/admin/ExceptionCard';
-import { SystemStatusDisplay } from '@/components/admin/SystemStatusDisplay';
 import type { AdminException, SystemStatus } from '@shared/types';
 import '@/styles/screens/admin.css';
 
@@ -43,12 +41,7 @@ export function AdminScreen() {
 
   const handleDismiss = async (exceptionId: string) => {
     try {
-      await api.resolveException({
-        exception_id: exceptionId,
-        action: 'DISMISS',
-      });
-
-      // Remove from list
+      await api.dismissException(exceptionId);
       setExceptions((prev) => prev.filter((ex) => ex.id !== exceptionId));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to dismiss exception');
@@ -56,52 +49,72 @@ export function AdminScreen() {
   };
 
   return (
-    <div className="admin-screen">
-      <div className="admin-header">
-        <div className="admin-header-left">
-          <div className="admin-logo">
-            <img
-              src="/logo.svg"
-              alt="BTK Institute"
-              style={{ width: '40px', height: '40px' }}
-            />
-          </div>
+    <div className="admin-screen-text">
+      {/* Header: Logo + Title + Back Button */}
+      <div className="admin-header-text">
+        <div className="admin-title">
+          <span className="admin-logo-text">BTK</span>
           <h1>Administration</h1>
         </div>
-        <div className="admin-header-right">
-          <Button onClick={() => navigate('/')} variant="secondary">
-            ← Back to Research
-          </Button>
-        </div>
+        <button onClick={() => navigate('/')} className="admin-back-button">
+          Back to Research
+        </button>
       </div>
 
-      <div className="admin-body">
+      <div className="admin-body-text">
         {loading ? (
           <p>Loading...</p>
         ) : error ? (
-          <p className="admin-error">{error}</p>
+          <p className="admin-error-text">{error}</p>
         ) : (
           <>
-            <div className="admin-section">
-              <h2 className="admin-section-title">Exceptions</h2>
+            {/* Exceptions Section - Plain Text */}
+            <div className="admin-section-text">
+              <h2>Exceptions</h2>
               {exceptions.length === 0 ? (
-                <p className="admin-empty">No pending exceptions</p>
+                <p>No pending exceptions</p>
               ) : (
-                <div className="admin-exceptions">
-                  {exceptions.map((exception) => (
-                    <ExceptionCard
-                      key={exception.id}
-                      exception={exception}
-                      onDismiss={handleDismiss}
-                    />
+                <div className="exceptions-list-text">
+                  {exceptions.map((exception, index) => (
+                    <div key={exception.id} className="exception-text-block">
+                      <p className="exception-line">
+                        [{index + 1}] {exception.exception_type} — {exception.severity}
+                      </p>
+                      <p className="exception-line">
+                        Description: {exception.description}
+                      </p>
+                      <p className="exception-line">
+                        Impact: {exception.impact}
+                      </p>
+                      <p className="exception-line">
+                        Detected: {new Date(exception.detected_at).toLocaleString()}
+                      </p>
+                      <p className="exception-line">
+                        <button
+                          onClick={() => handleDismiss(exception.id)}
+                          className="dismiss-button-text"
+                        >
+                          [Dismiss]
+                        </button>
+                      </p>
+                      {index < exceptions.length - 1 && <hr className="exception-separator" />}
+                    </div>
                   ))}
                 </div>
               )}
             </div>
 
-            <div className="admin-section">
-              <h2 className="admin-section-title">System Status</h2>
-              <SystemStatusDisplay statuses={systemStatus} />
+            {/* System Status Section - Plain Text */}
+            <div className="admin-section-text">
+              <h2>System Status</h2>
+              <div className="status-list-text">
+                {systemStatus.map((status) => (
+                  <p key={status.function_code} className="status-line">
+                    {status.function_code}: {status.status}
+                    {status.message && ` — ${status.message}`}
+                  </p>
+                ))}
+              </div>
             </div>
           </>
         )}
