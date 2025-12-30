@@ -43,14 +43,13 @@ export function LoginScreen() {
 
         {error && <ErrorMessage message={error} />}
 
-        <form onSubmit={handleSubmit} className="login-form">
+        <form onSubmit={handleSubmit} className="login-form" noValidate>
           <Input
             type="text"
             name="email"
             label="Email"
             value={email}
             onChange={setEmail}
-            required
             autoComplete="email"
             autoFocus
           />
