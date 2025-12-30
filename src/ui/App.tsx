@@ -4,6 +4,7 @@ import { ParkingLot } from './components/ParkingLot';
 import { ActivePhase } from './components/ActivePhase';
 import { Archive } from './components/Archive';
 import { Operations } from './components/Operations';
+import { DebugOverlay } from './components/DebugOverlay';
 import { api } from './api-client';
 import './styles/main.css';
 
@@ -41,7 +42,7 @@ export function App() {
   };
 
   if (!project) {
-    return <div style={{ padding: '24px' }}>Loading...</div>;
+    return <DebugOverlay />;
   }
 
   return (
