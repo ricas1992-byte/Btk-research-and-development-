@@ -22,6 +22,6 @@ export const CONFIG = {
   // Network retry
   NETWORK_RETRY_INTERVAL_MS: 10000, // 10 seconds
 
-  // Single user email
-  DEFAULT_USER_EMAIL: 'admin@beyondthekeys.ai',
+  // Single user email (canonical - per FULL EXECUTION BRIEF)
+  DEFAULT_USER_EMAIL: 'yotam_ricas@btk.institute',
 } as const;

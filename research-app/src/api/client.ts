@@ -1,10 +1,11 @@
 // ============================================
 // API Client for BTK Institute v5.2
-// NO AI INTEGRATION - Uses HTTP-only cookies for auth
+// NO AI INTEGRATION - Uses JWT tokens for auth
 // ============================================
 
 import type {
   LoginRequest,
+  LoginResponse,
   Document,
   UpdateDocumentRequest,
   Source,
@@ -18,9 +19,22 @@ import type {
   ApiResponse,
 } from '@shared/types';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+const API_BASE = import.meta.env.VITE_API_URL || '/api';
+const TOKEN_KEY = 'btk_auth_token';
 
 class APIClient {
+  private getToken(): string | null {
+    return localStorage.getItem(TOKEN_KEY);
+  }
+
+  private setToken(token: string): void {
+    localStorage.setItem(TOKEN_KEY, token);
+  }
+
+  private clearToken(): void {
+    localStorage.removeItem(TOKEN_KEY);
+  }
+
   private async request<T>(
     endpoint: string,
     options: RequestInit = {}
@@ -30,15 +44,25 @@ class APIClient {
       ...((options.headers as Record<string, string>) || {}),
     };
 
+    // Add Authorization header if token exists
+    const token = this.getToken();
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
     const response = await fetch(`${API_BASE}/${endpoint}`, {
       ...options,
       headers,
-      credentials: 'include', // CRITICAL: Send cookies with requests
     });
 
     const data = await response.json() as ApiResponse<T>;
 
     if (!response.ok || !data.success) {
+      // Clear token if unauthorized
+      if (response.status === 401) {
+        this.clearToken();
+      }
+
       const errorMessage = data.error || 'An unexpected error occurred.';
       throw new Error(errorMessage);
     }
@@ -50,15 +74,23 @@ class APIClient {
   // Auth
   // ==========================================
 
-  async login(credentials: LoginRequest): Promise<{ user: { id: string; email: string }; expiresAt: string }> {
-    return this.request('auth/login', {
+  async login(credentials: LoginRequest): Promise<void> {
+    const response = await this.request<LoginResponse>('auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials),
     });
+
+    // Store token in localStorage
+    this.setToken(response.token);
   }
 
   async logout(): Promise<void> {
-    await this.request('auth/logout', { method: 'POST' });
+    try {
+      await this.request('auth/logout', { method: 'POST' });
+    } finally {
+      // Always clear token, even if request fails
+      this.clearToken();
+    }
   }
 
   async getMe(): Promise<{ user: { id: string; email: string } }> {

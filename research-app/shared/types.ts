@@ -105,11 +105,8 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  user: {
-    id: string;
-    email: string;
-  };
-  expiresAt: string;
+  token: string;
+  expires_at: string;
 }
 
 export interface MeResponse {
@@ -117,6 +114,19 @@ export interface MeResponse {
     id: string;
     email: string;
   };
+}
+
+export interface TokenPayload {
+  user_id: string;
+  email: string;
+  issued_at: number;
+  expires_at: number;
+  session_id: string;
+}
+
+export interface ValidateResponse {
+  valid: boolean;
+  user_id: string;
 }
 
 // Document
