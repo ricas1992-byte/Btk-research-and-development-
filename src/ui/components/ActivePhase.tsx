@@ -6,7 +6,7 @@ import { StatusBadge } from './shared/StatusBadge';
 import { PlainTextArea } from './shared/PlainTextArea';
 import { EnforcementFeedback } from './shared/EnforcementFeedback';
 
-export function ActivePhase({ phase, onRefresh }: any) {
+export function ActivePhase({ phase, onRefresh, loading }: any) {
   const [activeTab, setActiveTab] = useState('documents');
   const [documents, setDocuments] = useState<any[]>([]);
   const [decisions, setDecisions] = useState<any[]>([]);
@@ -71,6 +71,14 @@ export function ActivePhase({ phase, onRefresh }: any) {
       }
     }
   };
+
+  if (loading) {
+    return (
+      <div className="empty-state">
+        <div className="empty-state-text">Loading active phase...</div>
+      </div>
+    );
+  }
 
   if (!phase) {
     return (

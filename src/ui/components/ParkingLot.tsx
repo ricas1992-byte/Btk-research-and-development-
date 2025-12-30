@@ -4,7 +4,7 @@ import { Button } from './shared/Button';
 import { Dialog } from './shared/Dialog';
 import { StatusBadge } from './shared/StatusBadge';
 
-export function ParkingLot({ ideas, activePhaseExists, onRefresh }: any) {
+export function ParkingLot({ ideas, activePhaseExists, onRefresh, loading, error: loadError }: any) {
   const [showDialog, setShowDialog] = useState(false);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -53,8 +53,15 @@ export function ParkingLot({ ideas, activePhaseExists, onRefresh }: any) {
       </div>
 
       {error && <div className="error-message">{error}</div>}
+      {loadError && <div className="error-message">Failed to load ideas: {loadError.message}</div>}
 
-      {parkedIdeas.length === 0 && (
+      {loading && (
+        <div className="empty-state">
+          <div className="empty-state-text">Loading ideas...</div>
+        </div>
+      )}
+
+      {!loading && parkedIdeas.length === 0 && (
         <div className="empty-state">
           <div className="empty-state-text">No parked ideas. Create one to get started.</div>
         </div>
