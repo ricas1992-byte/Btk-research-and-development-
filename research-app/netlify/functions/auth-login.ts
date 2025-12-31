@@ -30,7 +30,7 @@ export const handler: Handler = async (event) => {
     }
 
     // Only accept the authorized username
-    if (username !== 'yotam_ricas') {
+    if (username !== 'researcher') {
       throw ERRORS.INVALID_CREDENTIALS;
     }
 

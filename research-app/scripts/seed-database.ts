@@ -7,8 +7,8 @@ import { createClient } from '@libsql/client';
 import bcrypt from 'bcryptjs';
 
 // Canonical user credentials (per Canonical Spec v5.2)
-const CANONICAL_USERNAME = 'yotam_ricas';
-const CANONICAL_PASSWORD = 'btk1234';
+const CANONICAL_USERNAME = 'researcher';
+const CANONICAL_PASSWORD = 'BTK-BOOTSTRAP-2025!';
 const USER_ID = 'user-001';
 const DOCUMENT_ID = 'doc-001';
 
