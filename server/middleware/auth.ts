@@ -14,6 +14,15 @@ declare global {
  * Auth middleware - validates session token from HTTP-only cookie
  */
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
+  // ==========================================
+  // EMERGENCY BYPASS — Delete after Stage 2
+  // ==========================================
+  if (process.env.AUTH_BYPASS === 'true') {
+    req.userId = 'bypass';
+    return next();
+  }
+  // ==========================================
+
   const token = req.cookies?.btk_session;
 
   if (!token) {

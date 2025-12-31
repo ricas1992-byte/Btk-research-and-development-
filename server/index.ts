@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -10,6 +11,9 @@ import annotationsRoutes from './routes/annotations.js';
 import notesRoutes from './routes/notes.js';
 import writingPhaseRoutes from './routes/writing-phase.js';
 import adminRoutes from './routes/admin.js';
+
+// Load environment variables from .env.local
+dotenv.config({ path: '.env.local' });
 
 const PORT = process.env.PORT || 3000;
 

@@ -128,6 +128,22 @@ router.post('/logout', authMiddleware, (req, res) => {
  */
 router.get('/me', authMiddleware, (req, res) => {
   try {
+    // ==========================================
+    // EMERGENCY BYPASS — Delete after Stage 2
+    // ==========================================
+    if (process.env.AUTH_BYPASS === 'true') {
+      return res.json({
+        success: true,
+        data: {
+          user: {
+            id: 'bypass',
+            email: 'researcher@bypass.local'
+          }
+        }
+      });
+    }
+    // ==========================================
+
     const db = getDb();
 
     const user = db.prepare(`

@@ -10,6 +10,14 @@ import { ResearchScreen } from '@/screens/ResearchScreen';
 import { AdminScreen } from '@/screens/AdminScreen';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  // ==========================================
+  // EMERGENCY BYPASS — Delete after Stage 2
+  // ==========================================
+  if (import.meta.env.VITE_AUTH_BYPASS === 'true') {
+    return <>{children}</>;
+  }
+  // ==========================================
+
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
