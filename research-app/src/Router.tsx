@@ -8,6 +8,7 @@ import { api } from '@/api/client';
 import { LoginScreen } from '@/screens/LoginScreen';
 import { ResearchScreen } from '@/screens/ResearchScreen';
 import { AdminScreen } from '@/screens/AdminScreen';
+import { UserSetupScreen } from '@/screens/UserSetupScreen';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   // ==========================================
@@ -63,6 +64,7 @@ export function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginScreen />} />
+        <Route path="/admin/user-setup" element={<UserSetupScreen />} />
         <Route
           path="/"
           element={
