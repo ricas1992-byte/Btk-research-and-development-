@@ -23,5 +23,5 @@ export const CONFIG = {
   NETWORK_RETRY_INTERVAL_MS: 10000, // 10 seconds
 
   // Single user username (canonical - per FULL EXECUTION BRIEF)
-  DEFAULT_USERNAME: 'yotam_ricas',
+  DEFAULT_USERNAME: 'researcher',
 } as const;
