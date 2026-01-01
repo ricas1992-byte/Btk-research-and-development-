@@ -34,16 +34,34 @@ export function useAuth() {
         credentials: "same-origin",
         body: JSON.stringify({ username, password }),
       });
-      const data = await res.json();
+
+      // Diagnostic: Capture raw response body
+      const rawBody = await res.text();
+      let data;
+      try {
+        data = JSON.parse(rawBody);
+      } catch {
+        // Not valid JSON - return diagnostic with status and raw body
+        return {
+          success: false,
+          error: `SERVER ${res.status}: ${rawBody}`,
+        };
+      }
 
       if (data.success) {
         setIsAuthenticated(true);
         return { success: true };
       }
 
-      return { success: false, error: data.error || "Invalid credentials" };
-    } catch {
-      return { success: false, error: "Connection error" };
+      // Auth logic failure - server responded with JSON but success=false
+      return {
+        success: false,
+        error: `SERVER ${res.status}: ${rawBody}`,
+      };
+    } catch (err) {
+      // Fetch failed before reaching server
+      const errorMessage = err instanceof Error ? err.message : String(err);
+      return { success: false, error: `FETCH ERROR: ${errorMessage}` };
     }
   };
 
