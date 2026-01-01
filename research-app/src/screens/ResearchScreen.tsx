@@ -84,7 +84,7 @@ export function ResearchScreen() {
 
   const handleLogout = async () => {
     await api.logout();
-    navigate('/login');
+    window.location.href = '/';
   };
 
   const handleTitleChange = async (title: string) => {
