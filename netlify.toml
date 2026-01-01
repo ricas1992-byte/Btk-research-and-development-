@@ -1,6 +1,7 @@
 [build]
   publish = "research-app/dist"
   command = "pnpm run build"
+  functions = "research-app/netlify/functions"
 
 [[redirects]]
   from = "/*"
