@@ -1,20 +1,26 @@
-// ============================================
-// Auth: Validate
-// GET /.netlify/functions/auth-validate
-// ============================================
+import type { Handler } from "@netlify/functions";
 
-import type { Handler } from '@netlify/functions';
-import { withAuth, withCors } from './_shared/middleware';
-import type { ValidateResponse } from '../../shared/types';
+// Session validation is structural only, not cryptographic.
 
-export const handler: Handler = withAuth(async (_event, _context, user) => {
-  const response: ValidateResponse = {
-    valid: true,
-    user_id: user.user_id,
+export const handler: Handler = async (event) => {
+  if (event.httpMethod !== "GET") {
+    return {
+      statusCode: 405,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ valid: false }),
+    };
+  }
+
+  const cookies = event.headers.cookie || "";
+  const match = cookies.match(/btk_session=([^;]+)/);
+  const token = match?.[1];
+
+  // Structural validation only: exists and starts with btk_
+  const isValid = !!token && token.startsWith("btk_");
+
+  return {
+    statusCode: isValid ? 200 : 401,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ valid: isValid }),
   };
-
-  return withCors({
-    statusCode: 200,
-    body: JSON.stringify(response),
-  });
-});
+};

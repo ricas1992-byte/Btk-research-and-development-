@@ -2,27 +2,31 @@
 // Login Screen - Canonical v5.2
 // ============================================
 
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { api } from '@/api/client';
+import React, { useState, FormEvent } from 'react';
 import '@/styles/screens/login.css';
 
-export function LoginScreen() {
-  const navigate = useNavigate();
+interface Props {
+  onLogin: (username: string, password: string) => Promise<{ success: boolean; error?: string }>;
+}
+
+export function LoginScreen({ onLogin }: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setError(null);
+    setError('');
+    setIsSubmitting(true);
 
-    try {
-      await api.login({ username, password });
-      navigate('/');
-    } catch (err) {
-      setError('Sign-in failed');
+    const result = await onLogin(username, password);
+
+    if (!result.success) {
+      setError(result.error || 'Invalid credentials');
     }
+
+    setIsSubmitting(false);
   };
 
   return (
@@ -45,6 +49,8 @@ export function LoginScreen() {
               name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
+              autoComplete="username"
+              disabled={isSubmitting}
               required
             />
           </div>
@@ -57,12 +63,14 @@ export function LoginScreen() {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+              disabled={isSubmitting}
               required
             />
           </div>
 
-          <button type="submit" className="login-button">
-            Sign in
+          <button type="submit" className="login-button" disabled={isSubmitting}>
+            {isSubmitting ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
       </div>
