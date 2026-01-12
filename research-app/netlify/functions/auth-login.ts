@@ -1,8 +1,8 @@
 import type { Handler } from "@netlify/functions";
 
-// Hardcoded credentials — single user only
-const VALID_USERNAME = "researcher";
-const VALID_PASSWORD = "btk2025!";
+// Single-user credentials from environment variables
+const VALID_USERNAME = process.env.BTK_USERNAME;
+const VALID_PASSWORD = process.env.BTK_PASSWORD;
 
 function generateToken(): string {
   return `btk_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
