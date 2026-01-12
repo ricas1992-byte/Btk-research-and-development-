@@ -137,6 +137,7 @@ export interface UpdateDocumentRequest {
 
 // Annotations
 export interface CreateAnnotationRequest {
+  sourceId: string;
   textSelection: string;
   startOffset: number;
   endOffset: number;
@@ -154,7 +155,42 @@ export interface UpdateNoteRequest {
   content: string;
 }
 
-// Admin - No AI exception types
+// Admin
+export interface ResolveExceptionRequest {
+  exception_id: string;
+  action: 'DISMISS';
+}
+
+// Phase transitions
+export interface TransitionPhaseRequest {
+  to_phase: 'DRAFTING';
+}
+
+// Claude AI types
+export type ClaudeActionType = 'SUMMARIZE' | 'DRAFT' | 'REWRITE' | 'CRITIQUE';
+
+export interface DraftContext {
+  purpose?: string;
+  role?: string;
+  tone?: string;
+}
+
+export interface InvokeClaudeRequest {
+  action_type: ClaudeActionType;
+  input?: string;
+  context?: DraftContext;
+}
+
+export interface InvokeClaudeResponse {
+  output_id: string;
+  output_content: string;
+  status_tag: string;
+}
+
+export interface UpdateDispositionRequest {
+  output_id: string;
+  disposition: 'COPIED' | 'DISCARDED';
+}
 
 // --------------------------------------------
 // Standard API Response Types

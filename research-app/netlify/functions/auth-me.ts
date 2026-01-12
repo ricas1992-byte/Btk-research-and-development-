@@ -5,7 +5,7 @@
 
 import type { Handler } from '@netlify/functions';
 import { withAuth, withCors } from './_shared/middleware';
-import type { MeResponse } from '../../shared/types';
+import type { MeResponse } from '../../../shared/types';
 
 export const handler: Handler = async (event) => {
   try {

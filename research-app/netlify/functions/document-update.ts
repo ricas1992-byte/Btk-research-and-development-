@@ -6,7 +6,7 @@
 import type { Handler } from '@netlify/functions';
 import { withAuth, withCors } from './_shared/middleware';
 import { db } from './_shared/db';
-import type { UpdateDocumentRequest, Document } from '../../shared/types';
+import type { UpdateDocumentRequest, Document } from '../../../shared/types';
 
 export const handler: Handler = withAuth(async (event, _context, user) => {
   if (event.httpMethod !== 'PUT') {

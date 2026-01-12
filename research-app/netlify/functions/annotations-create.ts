@@ -6,7 +6,7 @@
 import type { Handler } from '@netlify/functions';
 import { withAuth, withCors } from './_shared/middleware';
 import { db } from './_shared/db';
-import type { CreateAnnotationRequest, Annotation } from '../../shared/types';
+import type { CreateAnnotationRequest, Annotation } from '../../../shared/types';
 
 export const handler: Handler = withAuth(async (event, _context, user) => {
   if (event.httpMethod !== 'POST') {
@@ -18,12 +18,12 @@ export const handler: Handler = withAuth(async (event, _context, user) => {
 
   const body: CreateAnnotationRequest = JSON.parse(event.body || '{}');
   const {
-    source_id,
-    text_selection,
-    start_offset,
-    end_offset,
-    note_content,
-    highlight_color,
+    sourceId,
+    textSelection,
+    startOffset,
+    endOffset,
+    noteContent,
+    highlightColor,
   } = body;
 
   const annotationId = crypto.randomUUID();
@@ -34,18 +34,18 @@ export const handler: Handler = withAuth(async (event, _context, user) => {
           VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
     args: [
       annotationId,
-      source_id,
+      sourceId,
       user.user_id,
-      text_selection,
-      start_offset,
-      end_offset,
-      note_content || null,
-      highlight_color || '#FFD700',
+      textSelection,
+      startOffset,
+      endOffset,
+      noteContent || null,
+      highlightColor || '#FFD700',
     ],
   });
 
   // If note_content provided, create a note and link it
-  if (note_content) {
+  if (noteContent) {
     const noteId = crypto.randomUUID();
 
     // Get document ID
@@ -59,7 +59,7 @@ export const handler: Handler = withAuth(async (event, _context, user) => {
     await db.execute({
       sql: `INSERT INTO note (id, user_id, document_id, content, source_id, annotation_id)
             VALUES (?, ?, ?, ?, ?, ?)`,
-      args: [noteId, user.user_id, documentId, note_content, source_id, annotationId],
+      args: [noteId, user.user_id, documentId, noteContent, sourceId, annotationId],
     });
 
     // Mark annotation as synced to notes

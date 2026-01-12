@@ -8,7 +8,7 @@ import { withAuth, withCors } from './_shared/middleware';
 import { db } from './_shared/db';
 import { APIError } from './_shared/errors';
 import { CONFIG } from '../../../shared/config';
-import type { CreateNoteRequest, Note } from '../../shared/types';
+import type { CreateNoteRequest, Note } from '../../../shared/types';
 
 export const handler: Handler = withAuth(async (event, _context, user) => {
   if (event.httpMethod !== 'POST') {
@@ -19,7 +19,7 @@ export const handler: Handler = withAuth(async (event, _context, user) => {
   }
 
   const body: CreateNoteRequest = JSON.parse(event.body || '{}');
-  const { content, source_id } = body;
+  const { content, sourceId } = body;
 
   if (!content || content.trim().length === 0) {
     throw new APIError(400, 'Note content required');
@@ -42,7 +42,7 @@ export const handler: Handler = withAuth(async (event, _context, user) => {
   await db.execute({
     sql: `INSERT INTO note (id, user_id, document_id, content, source_id)
           VALUES (?, ?, ?, ?, ?)`,
-    args: [noteId, user.user_id, documentId, content.trim(), source_id || null],
+    args: [noteId, user.user_id, documentId, content.trim(), sourceId || null],
   });
 
   // Fetch created note

@@ -6,7 +6,7 @@
 import type { Handler } from '@netlify/functions';
 import { withAuth, withCors } from './_shared/middleware';
 import { db } from './_shared/db';
-import type { AdminException } from '../../shared/types';
+import type { AdminException } from '../../../shared/types';
 
 export const handler: Handler = withAuth(async (_event, _context, user) => {
   const result = await db.execute({

@@ -8,7 +8,7 @@ import { withAuth, withCors } from './_shared/middleware';
 import { db } from './_shared/db';
 import { invokeClaudeAction } from './_shared/claude';
 import { APIError } from './_shared/errors';
-import type { InvokeClaudeRequest, InvokeClaudeResponse } from '../../shared/types';
+import type { InvokeClaudeRequest, InvokeClaudeResponse } from '../../../shared/types';
 
 export const handler: Handler = withAuth(async (event, _context, user) => {
   if (event.httpMethod !== 'POST') {

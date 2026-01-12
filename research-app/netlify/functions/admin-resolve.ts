@@ -7,7 +7,7 @@ import type { Handler } from '@netlify/functions';
 import { withAuth, withCors } from './_shared/middleware';
 import { db } from './_shared/db';
 import { APIError } from './_shared/errors';
-import type { ResolveExceptionRequest } from '../../shared/types';
+import type { ResolveExceptionRequest } from '../../../shared/types';
 
 export const handler: Handler = withAuth(async (event, _context, user) => {
   if (event.httpMethod !== 'PUT') {
